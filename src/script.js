@@ -46,14 +46,14 @@ button.addEventListener('click', () => {
   // }
 });
 
- function changeBackgroundColor() {
+ const changeBackgroundColor = () => {
   let imageColor = document.querySelectorAll(".image-link");
   if(button.classList.contains('active')) {
-    menuNavigation.style.background = '#4CD964';
-    imageColor.forEach(b => b.style.backgroundColor = '#4CD964');
+    menuNavigation.style.background = 'linear-gradient(to bottom left, #00cc00 0%, #ffcc00 100%)';
+    imageColor.forEach(b => b.style.background = 'linear-gradient(to bottom left, #00cc00 0%, #ffcc00 100%)');
   } else {
-    menuNavigation.style.background = '#f06c64';
-    imageColor.forEach(b => b.style.backgroundColor = '#f06c64');
+    menuNavigation.style.background = 'linear-gradient(to top right, #ffcc00 0%, #ff00ff 100%)';
+    imageColor.forEach(b => b.style.background = 'linear-gradient(to top right, #ffcc00 0%, #ff00ff 100%)');
   }
 }
 
