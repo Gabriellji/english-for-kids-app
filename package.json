@@ -1,0 +1,32 @@
+{
+  "name": "english-for-kids",
+  "version": "1.0.0",
+  "description": "english-for kids",
+  "main": "script.js",
+  "scripts": {
+    "dev": "webpack-dev-server", 
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Gabriellji/english-for-kids.git"
+  },
+  "author": "gabriellji",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Gabriellji/english-for-kids/issues"
+  },
+  "homepage": "https://github.com/Gabriellji/english-for-kids#readme",
+  "devDependencies": {
+    "@babel/core": "^7.9.0",
+    "@babel/preset-env": "^7.9.5",
+    "babel-loader": "^8.1.0",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-plugin-import": "^2.20.2",
+    "file-loader": "^6.0.0",
+    "webpack": "^4.42.1",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.10.3"
+  }
+}
