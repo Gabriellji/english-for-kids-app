@@ -258,6 +258,14 @@
           font-size: 1.40rem;}
       }
     
+      /* .main-cards-images .card {
+        width: 100%;
+        height: 100%;
+        transition: transform 1s;
+        transform-style: preserve-3d;
+        cursor: pointer;
+        position: relative;
+      }
 
       .main-cards-images .card__face {
         display: flex;
@@ -278,6 +286,12 @@
         cursor: pointer;
         -webkit-transition: .3s;
         transition: all .3s;
+
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
       }
 
       .main-cards-images .card__face img {
@@ -287,20 +301,11 @@
         transition:all .25s ease-out;
         }
 
-        .card__face.is-flipped {
+        .card.is-flipped {
           transform: rotateY(180deg);
         }
         
-        .card__face {
-          /* position: absolute; */
-          transition: transform 1s;
-          transform-style: preserve-3d;
-          cursor: pointer;
-          position: relative;
-          /* -webkit-backface-visibility: hidden;
-          backface-visibility: hidden; */
-        }
         .card__face--back {
           position: absolute;
           transform: rotateY(180deg);
-        }
+        } */

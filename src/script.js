@@ -1,3 +1,6 @@
+
+import View from './View';
+
 const menuHamburgerButton = document.querySelector('.hamburger');
 const menuNavigation = document.querySelector('.header__navigation');
 const menuHiddenOverlay = document.querySelector('.overlay');
@@ -49,17 +52,13 @@ button.addEventListener('click', () => {
     menuNavigation.style.background = 'linear-gradient(to top right, #ffcc00 0%, #ff00ff 100%)';
     imageColor.forEach(b => b.style.background = 'linear-gradient(to top right, #ffcc00 0%, #ff00ff 100%)');
   }
-}
+};
 
-// flipp cards
+// let card = document.querySelector('.card');
+// card.addEventListener( 'click', function() {
+//   card.classList.toggle('is-flipped');
+// });
 
-let imageContainer = document.querySelector('.main-cards-images');
 
-let cards = document.querySelectorAll('.card__face--front');
-
-imageContainer.addEventListener('click', () => {
-  
-    console.log('flipppp');
-    cards.forEach(b => b.classList.toggle('is-flipped'));
- 
-});
+View.init();
+View.drawCard("/english-for-kids/src/img/cat.jpg", 'hgjgcjgxjhgd');
