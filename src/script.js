@@ -30,20 +30,14 @@ const clickLinksHandler = (e) => {
 menuHamburgerButton.addEventListener('click', clickHamburgerHandler);
 menuNavigation.addEventListener('click', clickLinksHandler);
 
-const button = document.querySelector('input');
+// toggle button
 
+const button = document.querySelector('input');
 
 button.addEventListener('click', () => {
 
   button.classList.toggle('active');
   changeBackgroundColor();
- 
-  // if(button.classList.contains('active')) {
-  //   let imageColor = document.querySelectorAll('.link-image');
-  //   imageColor.style.background = '#4CD964';
-  // } else {
-  //   imageColor.style.background = '#f06c64';
-  // }
 });
 
  const changeBackgroundColor = () => {
@@ -57,3 +51,15 @@ button.addEventListener('click', () => {
   }
 }
 
+// flipp cards
+
+let imageContainer = document.querySelector('.main-cards-images');
+
+let cards = document.querySelectorAll('.card__face--front');
+
+imageContainer.addEventListener('click', () => {
+  
+    console.log('flipppp');
+    cards.forEach(b => b.classList.toggle('is-flipped'));
+ 
+});
