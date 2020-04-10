@@ -1,5 +1,5 @@
 
-import View from './View';
+import View from './View.js'; 
 
 const menuHamburgerButton = document.querySelector('.hamburger');
 const menuNavigation = document.querySelector('.header__navigation');
@@ -61,4 +61,4 @@ button.addEventListener('click', () => {
 
 
 View.init();
-View.drawCard("/english-for-kids/src/img/cat.jpg", 'hgjgcjgxjhgd');
+View.drawCard();
