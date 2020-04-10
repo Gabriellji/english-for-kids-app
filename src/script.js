@@ -54,11 +54,26 @@ button.addEventListener('click', () => {
   }
 };
 
-// let card = document.querySelector('.card');
-// card.addEventListener( 'click', function() {
-//   card.classList.toggle('is-flipped');
-// });
+//clik card on main page 
+
+const mainContainer = document.querySelector('.main-cards-images');
+
+mainContainer.addEventListener('click', (e) => {
+  if (e.target.classList.contains('image-link')) {
+    console.log('fdgdzgfz');
+    newFunction();
+  }
+});
 
 
-View.init();
-View.drawCard();
+
+
+
+function newFunction() {
+  View.init();
+  View.renderCard();
+  View.drawCard();
+}
+// View.renderCard();
+
+// View.drawCard();
