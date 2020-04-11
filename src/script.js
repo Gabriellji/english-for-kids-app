@@ -1,5 +1,5 @@
 
-import View from './View.js'; 
+import View from './View';
 
 const menuHamburgerButton = document.querySelector('.hamburger');
 const menuNavigation = document.querySelector('.header__navigation');
@@ -58,6 +58,7 @@ button.addEventListener('click', () => {
 
 const mainContainer = document.querySelector('.main-cards-images');
 
+<<<<<<< HEAD
 mainContainer.addEventListener('click', (e) => {
   if (e.target.classList.contains('image-link')) {
     console.log('fdgdzgfz');
@@ -77,3 +78,7 @@ function newFunction() {
 // View.renderCard();
 
 // View.drawCard();
+=======
+View.init();
+View.drawCard("/english-for-kids/src/img/cat.jpg", 'hgjgcjgxjhgd');
+>>>>>>> parent of e4a6296... feat: create view module
