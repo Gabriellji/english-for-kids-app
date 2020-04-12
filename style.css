@@ -97,28 +97,26 @@
     font-size: 1rem;
     letter-spacing:0;
     line-height: 46px;
+    color: ivory;
+    cursor:pointer;
     }
 
-    .header__navigation li a {
-      text-decoration: none;
-      color: ivory;
-      }
  
-    .header__navigation li a.active {
-    color:#f06c64;
-    }
-    
-    .header__navigation ul {
-    display:flex;
-    flex-direction: column;
-    }
 
-    .header__navigation a:hover {
+     .header__navigation li:hover {
       animation-name: test 1s linear;
       animation: blur 1s ease-out;
       text-shadow: 0px 0px 15px #fff, 0px 0px 17px #fff;
       transition:color .7s ease-in-out;
       cursor:pointer;
+     
+      }
+ 
+  
+    .header__navigation ul {
+    display:flex;
+    flex-direction: column;
+    
     }
 
     .toggle {

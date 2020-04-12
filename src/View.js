@@ -10,14 +10,19 @@
 
 
   init() {
+      this.body = document.querySelector('body');
       this.menu = document.querySelector('#menu');
       this.navigation = document.querySelector('.header__navigation');
       this.hamburger = document.querySelector('.hamburger');
       this.cards = document.querySelector('.main-cards-images');
       this.switcher = document.querySelector('input');
       this.overlay =  document.querySelector('.overlay');
-
       
+      this.link_container = document.querySelector('.navigation');
+      this.list_for_link = document.querySelector('li');
+      this.link = document.querySelector('a');
+
+      //flip card
       this.cards.addEventListener( 'click', ((e) => {
         const card = e.target.closest('.card');
         if (card) {
@@ -25,17 +30,29 @@
         }
       }).bind(this));
 
-      
-      this.switcher.addEventListener('click', (() => {
-
-        this.switcher.classList.toggle('active');
-        this.changeBackgroundColor();
-      }).bind(this));
+      //toggle switcher
 
       this.hamburger.addEventListener('click', this.clickHamburgerHandler.bind(this));
       this.navigation.addEventListener('click', this.clickLinksHandler.bind(this));
 
     
+    },
+
+    drowMenu(text, id) {
+      const listLink = document.createElement('li');
+      // const link = document.createElement('a');
+      // link.setAttribute('href');
+      listLink.setAttribute('data-id', id);
+      listLink.textContent = text;
+
+      // listLink.appendChild(link);
+      this.link_container.appendChild(listLink);
+    },
+
+    drowMenuPanel(arrayMenu) {
+      arrayMenu.forEach((link) => {
+        this.drowMenu(link.category, link.id);
+      });
     },
 
    openMobileMenu() {
@@ -80,7 +97,7 @@
   },
 
 // Draw card
-  drawCard (img, text, sound) {
+  drawCard (img, text, sound, translate) {
     // main scene for card flip
       const container = document.createElement('div');
       container.classList.add('scene');
@@ -119,7 +136,7 @@
 
       // Back side title
       const titleBack = document.createElement('span');
-      titleBack.textContent = text;
+      titleBack.textContent = translate;
 
       card.appendChild(image);
       card.appendChild(audio);
@@ -138,12 +155,16 @@
    // Draw cardSSS 
   drawCards (arrayCards) {
     arrayCards.forEach((card) => {
-      this.drawCard(card.image, card.word);
+      this.drawCard(card.image, card.word, card.translation);
     });
 },
 
  cleanPage() {
   this.cards.innerHTML = '';
+ },
+
+ cleanListMenu() {
+  this.link_container.innerHTML = '';
  }
 
 
