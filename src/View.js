@@ -155,7 +155,7 @@
    // Draw cardSSS 
   drawCards (arrayCards) {
     arrayCards.forEach((card) => {
-      this.drawCard(card.image, card.word, card.translation);
+      this.drawCard(card.image, card.word, card.audio, card.translation);
     });
 },
 

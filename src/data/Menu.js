@@ -2,43 +2,47 @@
 
 const menu = [
     {
-        category:'Action (set A)',
+        category:'Main Page',
         id: 0
     },
-
     {
-        category:'Action (set B)',
+        category:'Action (set A)',
         id: 1
     },
 
     {
-        category:'Action (set C)',
+        category:'Action (set B)',
         id: 2
     },
 
     {
+        category:'Action (set C)',
+        id: 3
+    },
+
+    {
         category:'Abjective',
-        id: 3,
+        id: 4,
     },
 
     {
         category:'Animal (set A)',
-        id: 4
-    },
-
-    {
-        category:'Animal (set B)',
         id: 5
     },
 
     {
-        category:'Clothes',
+        category:'Animal (set B)',
         id: 6
     },
 
     {
-        category:'Emotions',
+        category:'Clothes',
         id: 7
+    },
+
+    {
+        category:'Emotions',
+        id: 8
     }
 ]
 

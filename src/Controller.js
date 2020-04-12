@@ -26,13 +26,15 @@ const Controller = {
        let id_category = event.target.getAttribute('data-id');
        console.log(id_category);
        this.setCategory(id_category);
+       this.view.closeMobileMenu();
 
       }).bind(this));
  },
 
  setCategory(id) {
+    this.view.cleanPage();
     const category = new Card(id);
-    console.log(category.data);
+    // console.log(category.data);
     this.view.drawCards(category.data);
  },
 

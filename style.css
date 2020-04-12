@@ -116,7 +116,7 @@
     .header__navigation ul {
     display:flex;
     flex-direction: column;
-    
+
     }
 
     .toggle {
@@ -252,6 +252,7 @@
           font-size: 40px;
           -webkit-backface-visibility: hidden;
           backface-visibility: hidden;
+          overflow: hidden;
         }
         
         /* .card__face--front {
