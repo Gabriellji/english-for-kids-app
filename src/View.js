@@ -23,12 +23,7 @@
       this.link = document.querySelector('a');
 
       //flip card
-      this.cards.addEventListener( 'click', ((e) => {
-        const card = e.target.closest('.card');
-        if (card) {
-          this.flipCard(card);
-        }
-      }).bind(this));
+  
 
       //toggle switcher
 
@@ -155,7 +150,7 @@
    // Draw cardSSS 
   drawCards (arrayCards) {
     arrayCards.forEach((card) => {
-      this.drawCard(card.image, card.word, card.audio, card.translation);
+      this.drawCard(card.image, card.word, card.audioSrc, card.translation);
     });
 },
 

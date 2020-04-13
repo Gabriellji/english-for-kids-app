@@ -185,7 +185,7 @@
 
     .main-cards-images .image-link {
       display: flex;
-      height: 280px;
+      height: 260px;
       border-radius: 5px;
       box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
       color:ivory;
@@ -202,6 +202,13 @@
       -webkit-transition: .3s;
       transition: all .3s;
     }
+
+    /* Play */
+    .main-cards-images .scene .card .play {
+      text-align: center;
+      flex-direction: unset;
+    }
+    /**/
   
     .main-cards-images .image-link:hover {
       box-shadow: 0 10px 30px 0 rgba(0,0,0,.3), 0 2px 10px 0 rgba(0,0,0,.12);
@@ -210,10 +217,21 @@
   
     .main-cards-images .image-link img {
       height: 206px;
-      margin-bottom:20px;
+      margin-bottom:5px;
       cursor:pointer;
       transition:all .25s ease-out;
       }
+
+        /* Play */
+      .main-cards-images .scene .card .play img {
+        height: 260px;
+        max-width: 126%;
+      }
+
+      .play-span {
+        display: none;
+      }
+      /**/
   
     .main-cards-images .image-link img::before {
       content:"";
