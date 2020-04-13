@@ -232,18 +232,38 @@
         display: none;
       }
       /**/
-  
-    .main-cards-images .image-link img::before {
-      content:"";
-      float:left;
-      padding-top:100%;
+
+      .main-cards-images .image-link .arrow {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        filter: invert(1);
+        right: 0;
+        bottom: 0;
+        padding: 0 20px 10px 0;
+        transform: rotate(16deg);
+        transition: all .2s linear;
       }
+
+        .main-cards-images .image-link .arrow:hover {
+          padding: 0 18px 10px 0;
+          transform: rotate(35deg);
+        }
+        .wrapper .main-cards-images .scene .card .play .arrow {
+          display: none;
+        }
+    
+      .main-cards-images .image-link img::before {
+        content:"";
+        float:left;
+        padding-top:100%;
+        }
   
       .scene {
-          width: 280px;
-          height: 280px;
-          margin: 40px 25px;
-          perspective: 600px;
+        width: 280px;
+        height: 265px;
+        margin: 40px 25px;
+        perspective: 600px;
         }
         
         .card {

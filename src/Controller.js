@@ -16,7 +16,7 @@ const Controller = {
     this.setCategory(0);
     this.view.drowMenuPanel(this.dataMenu.data);
 //flip card
-    this.view.cards.addEventListener( 'click', this.cardHandler.bind(this));
+    this.view.cards.addEventListener('click', this.cardHandler.bind(this));
 
     this.view.switcher.addEventListener('click', this.switcherHandler.bind(this));
 
@@ -25,7 +25,6 @@ const Controller = {
 
 
  cardHandler(e){
-   
    const card = e.target.closest('.card');
    if(Mode.isTrain){
       if (card) {
@@ -33,15 +32,27 @@ const Controller = {
          card.querySelector('audio').play();
        }
    } else {
+      const currentCard = Mode.activeCards[Mode.round - 1];
       // win
-      if(card.getAttribute('data-id') == Mode.activeCards[Mode.round - 1].id){
-         Mode.activeCards[Mode.round - 1].point = true;
-         this.startRound();
+      if(card.getAttribute('data-id') == currentCard.id){
+         currentCard.point = currentCard.point === false ? false : true;
+         if(Mode.round < 8) {
+            this.startRound();
+         } else {
+            this.endGame();
+         }
+         
       } else {
-         this.playWord(Mode.activeCards[Mode.round - 1].audioSrc);
+         this.playWord(currentCard.audioSrc);
+         currentCard.point = false;
       }
    }
      
+},
+
+endGame(){
+   this.setCategory(0);
+   this.switcherHandler();
 },
 
   startRound(){
@@ -62,15 +73,31 @@ const Controller = {
    this.view.switcher.classList.toggle('active');
    this.view.changeBackgroundColor();
    Mode.isTrain = !Mode.isTrain;
+   this.changeView();
    if(!Mode.isTrain) {
       this.startRound();
-   }
+   } 
  },
 
  menuHandler() {
    let id_category = event.target.getAttribute('data-id');
        this.setCategory(id_category);
        this.view.closeMobileMenu();
+ },
+
+// play mode for cards
+ changeView(){
+    if(Mode.isTrain){
+      document.querySelectorAll('.image-link').forEach(el => {
+         el.classList.remove('play');
+      })
+    } else {
+      document.querySelectorAll('.image-link').forEach(el => {
+         el.classList.add('play');
+         
+      })
+    }
+ 
  },
 
  setCategory(id) {

@@ -16,7 +16,7 @@ initGame(cards) {
     this.round = 0;
     this.shuffle(cards.data);
     this.activeCards = cards.data.map((el) => {
-        return {...el, point: false};
+        return {...el, point: null};
     });
 }
 

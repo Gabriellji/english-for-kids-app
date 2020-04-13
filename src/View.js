@@ -6,9 +6,6 @@
     hamburger: null,
     cards: null,
 
-
-
-
   init() {
       this.body = document.querySelector('body');
       this.menu = document.querySelector('#menu');
@@ -21,8 +18,6 @@
       this.link_container = document.querySelector('.navigation');
       this.list_for_link = document.querySelector('li');
       this.link = document.querySelector('a');
-
-      //flip card
   
 
       //toggle switcher
@@ -86,13 +81,17 @@
       }
     },
     
-
+//flip card
    flipCard(card) {
       card.classList.toggle('is-flipped');
+      // card.onmouseout = function(event) {
+      //   let target = event.target;
+      //   target.classList.remove('is-flipped');
+      // };
   },
 
 // Draw card
-  drawCard (img, text, sound, translate) {
+  drawCard (img, text, sound, translate, id) {
     // main scene for card flip
       const container = document.createElement('div');
       container.classList.add('scene');
@@ -100,12 +99,14 @@
     // inner container for both sides
       const innerContainer = document.createElement('div');
       innerContainer.classList.add('card');
+      innerContainer.setAttribute('data-id', id);
 
       container.appendChild(innerContainer);
 
      // Font side 
       const card = document.createElement('div');
       card.classList.add('card__face', 'card__face--front', 'image-link');
+
       
       // Back side
       const cardFacaBack = document.createElement('div');
@@ -129,6 +130,11 @@
       const title = document.createElement('span');
       title.textContent = text;
 
+      const arrow = document.createElement('img');
+      arrow.classList.add('arrow');
+      arrow.setAttribute('src', '../src/img/rotate.svg');
+
+
       // Back side title
       const titleBack = document.createElement('span');
       titleBack.textContent = translate;
@@ -136,6 +142,7 @@
       card.appendChild(image);
       card.appendChild(audio);
       card.appendChild(title);
+      card.appendChild(arrow);
 
       cardFacaBack.appendChild(imageBack);
       cardFacaBack.appendChild(titleBack);
@@ -150,7 +157,7 @@
    // Draw cardSSS 
   drawCards (arrayCards) {
     arrayCards.forEach((card) => {
-      this.drawCard(card.image, card.word, card.audioSrc, card.translation);
+      this.drawCard(card.image, card.word, card.audioSrc, card.translation, card.id);
     });
 },
 
