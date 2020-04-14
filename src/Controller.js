@@ -2,6 +2,7 @@ import View from './View';
 import Card from './model/Card';
 import Menu from './model/Menu';
 import Mode from './model/Mode';
+import MainPage from './model/Main_Page';
 
 
 const Controller = {
@@ -13,7 +14,9 @@ const Controller = {
 
     this.view.init();
     // this.view.drawCards(this.dataCards.data);
-    this.setCategory(0);
+   //  this.setCategory(0);
+   this.setMainCategory(0);
+
     this.view.drowMenuPanel(this.dataMenu.data);
 //flip card
     this.view.cards.addEventListener('click', this.cardHandler.bind(this));
@@ -106,6 +109,12 @@ endGame(){
     this.view.drawCards(category.data);
     Mode.initGame(category);
  },
+
+ setMainCategory(id) {
+   this.view.cleanPage();
+   const category = new MainPage(id);
+   this.view.drowMainPageCards(category.data);
+ }
 
 };
 

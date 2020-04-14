@@ -28,6 +28,35 @@
     
     },
 
+    drowMainPage(img, text, id) {
+      const container = document.createElement('div');
+      container.classList.add('maine-page-cards');
+      container.setAttribute('data-id', id);
+
+      const card = document.createElement('div');
+      card.classList.add('image-link');
+
+      const image = document.createElement('img');
+      image.setAttribute('src', img);
+      image.setAttribute('alt', text);
+
+      const title = document.createElement('span');
+      title.textContent = text;
+
+      card.appendChild(image);
+      card.appendChild(title);
+
+      container.appendChild(card);
+
+      this.cards.appendChild(container);
+    },
+
+    drowMainPageCards(arrayCards) {
+      arrayCards.forEach((card) => {
+        this.drowMainPage(card.image, card.word, card.categories_id);
+      });
+  },
+
     drowMenu(text, id) {
       const listLink = document.createElement('li');
       // const link = document.createElement('a');
@@ -84,10 +113,6 @@
 //flip card
    flipCard(card) {
       card.classList.toggle('is-flipped');
-      // card.onmouseout = function(event) {
-      //   let target = event.target;
-      //   target.classList.remove('is-flipped');
-      // };
   },
 
 // Draw card

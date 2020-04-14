@@ -45,7 +45,7 @@ const cards = [
       word: 'cry',
       translation: 'плакать',
       image: '../src/img/cry.jpg',
-      audioSrc: 'audio/cry.mp3',
+      audioSrc: '../src/audio/cry.mp3',
       categories_id:1,
       id:1
     },

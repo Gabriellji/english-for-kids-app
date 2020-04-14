@@ -265,6 +265,14 @@
         margin: 40px 25px;
         perspective: 600px;
         }
+
+        .maine-page-cards {
+            cursor: pointer;
+            position: relative;
+            width: 280px;
+            height: 265px;
+            margin: 40px 25px;
+        }
         
         .card {
           width: 100%;
