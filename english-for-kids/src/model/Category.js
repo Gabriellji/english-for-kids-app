@@ -1,9 +1,20 @@
-import main_page from '../data/main_page.js'
+import Card from './Card.js';
 
-class MainPage {
-    constructor(){
-        this.data = main_page;
+class Category {
+    constructor(id, title, img, words) {
+        this.id = id;
+        this.title = title;
+        this.img = img;
+        this.cards = this.createCards(words);
+    }
+
+    createCards(array) {
+        const cards = [];
+        array.forEach(function ({ id, word, translate, img, audio }) {
+            cards.push(new Card(id, word, translate, img, audio));
+        });
+        return cards;
     }
 }
 
-export default MainPage
+export default Category;
