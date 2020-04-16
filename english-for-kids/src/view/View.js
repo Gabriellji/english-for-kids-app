@@ -27,15 +27,15 @@ class View {
     if (e.target.tagName === 'LI') {
         this.closeMobileMenu();
         if(e.target.id === 'maine-page__link') {
-          this.emmit('main_page_requested');
+          this.emit('main_page_requested');
         } else {
-          this.emmit('category_requested', e.target.getAttribute('data-id'));
+          this.emit('category_requested', e.target.getAttribute('data-id'));
         }
     }
   }
 
   clickSwitcherHandler() {
-    this.emmit('toggle_switched');
+    this.emit('toggle_switched');
   }
 
   openMobileMenu() {
@@ -55,7 +55,7 @@ class View {
   }
 
   cleanPage() {
-    this.cards.innerHTML = '';
+    this.cardsContainer.innerHTML = '';
   }
 
   drawCard (id, word, img, translate='null') {
@@ -83,13 +83,12 @@ class View {
     imageBack.setAttribute('alt', word);
 
     const title = document.createElement('span');
-    title.wordContent = word;
+    title.textContent = word;
 
     const titleBack = document.createElement('span');
-    titleBack.wordContent = translate;
+    titleBack.textContent = translate;
 
     card.appendChild(image);
-    card.appendChild(audio);
     card.appendChild(title);
 
     cardFacaBack.appendChild(imageBack);
@@ -101,7 +100,7 @@ class View {
     this.cardsContainer.appendChild(container);
   }
 
-  drawCards (arrayCards) {
+  drawCards(arrayCards) {
     arrayCards.forEach(({id, word, translate, img}) => {
       this.drawCard(id, word, img, translate);
     });
@@ -121,12 +120,18 @@ class View {
     });
   }
 
+  drowButton() {
+    const button = document.createElement('button');
+    button.classList.add('button-start');
+    this.cardsContainer.appendChild(button);
+  }
+
   changeBackgroundColor(mode) {
     let imageColor = document.querySelectorAll(".image-link");
-    if(mode === 'train') {
+    if(mode === 'play') {
       this.navigation.style.background = 'linear-gradient(to bottom left, #00cc00 0%, #ffcc00 100%)';
       imageColor.forEach(b => b.style.background = 'linear-gradient(to bottom left, #00cc00 0%, #ffcc00 100%)');
-    } else if (mode === 'play'){
+    } else if (mode === 'train'){
       this.navigation.style.background = 'linear-gradient(to top right, #ffcc00 0%, #ff00ff 100%)';
       imageColor.forEach(b => b.style.background = 'linear-gradient(to top right, #ffcc00 0%, #ff00ff 100%)');
     }

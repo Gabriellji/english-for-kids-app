@@ -341,3 +341,14 @@
           }
         
           
+      
+          .button-start {
+            width: 136px;
+            border: none;
+            height: 35px;
+            background: #FBC65F;
+            color: #886A30;
+            cursor: pointer;
+            text-transform: uppercase;
+            border-radius: 5px;
+          }

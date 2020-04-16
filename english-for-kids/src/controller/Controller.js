@@ -14,7 +14,7 @@ class Controller {
     setModeController(mode){
         if(mode === 'menu') {
             this.modeController = new MenuModeController(this.view, this.model);
-            this.modeController.setCategory(0);
+            this.modeController.init();
         }
     }
 
@@ -26,3 +26,5 @@ class Controller {
         this.view.changeBackgroundColor(mode);
     }
 }
+
+export default Controller;

@@ -1,4 +1,4 @@
-import data from '../data';
+import data from '../../data';
 
 class ModeController {
     constructor(view, model) {
@@ -12,6 +12,8 @@ class ModeController {
     }
 
     createCards(){
-        this.view.drawCards(this.model.category);
+        this.view.drawCards(this.model.category.cards);
     }
 }
+
+export default ModeController;

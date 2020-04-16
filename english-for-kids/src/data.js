@@ -1,7 +1,14 @@
+
+
+
+
+
+
+
 export default  [
     {
         title: 'Action (set A)',
-        img: '../src/img/dance.jpg',
+        img: './assets/img/dance.jpg',
         id: 1,
         words: [
             {

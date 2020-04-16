@@ -5,6 +5,12 @@ class MenuModeController extends ModeController {
         super(view, model);
     }
 
+    init() {
+        this.view.cleanPage();
+        this.setCategory();
+        this.createCards();
+    }
+
     setCategory(id) {
         this.model.createCategory( {id: '0', title: 'menu', img: null, words: this.data} );
     }
