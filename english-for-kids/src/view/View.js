@@ -111,12 +111,12 @@ class View {
     });
   }
 
-  changeBackgroundColor() {
+  changeBackgroundColor(mode) {
     let imageColor = document.querySelectorAll(".image-link");
-    if(this.switcher.classList.contains('active')) {
+    if(mode === 'train') {
       this.navigation.style.background = 'linear-gradient(to bottom left, #00cc00 0%, #ffcc00 100%)';
       imageColor.forEach(b => b.style.background = 'linear-gradient(to bottom left, #00cc00 0%, #ffcc00 100%)');
-    } else {
+    } else if (mode === 'play'){
       this.navigation.style.background = 'linear-gradient(to top right, #ffcc00 0%, #ff00ff 100%)';
       imageColor.forEach(b => b.style.background = 'linear-gradient(to top right, #ffcc00 0%, #ff00ff 100%)');
     }

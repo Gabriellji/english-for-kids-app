@@ -1,18 +1,25 @@
 import Category from './Category';
 import data from '../data';
+import eventMixin from '../mixins/eventMixin';
 
 class Model {
     constructor(mode) {
         this.mode = mode;
-        this.data = data;
         this.setCategory(data);
+    }
+
+    changeMode() {
+        this.mode = this.mode === 'train' ? 'play' : 'train';
+        this.emmit('mode_changed', this.mode);
     }
 
     createCategory({id, title, img, words}) {
         this.category = new Category(id, title, img, words);
     }
 
-    setCategory(id) {
-        this.createCategory( (this.data.filter( category => category.id === id ))[0] );
-    }
+    
 }
+
+Object.assign(Model.prototype, eventMixin);
+
+export default Model;

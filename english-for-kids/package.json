@@ -1,8 +1,8 @@
 {
   "name": "english-for-kids",
   "version": "1.0.0",
-  "description": "english-for kids",
-  "main": "script.js",
+  "description": "english-for-kids",
+  "main": "index.js",
   "scripts": {
     "dev": "webpack-dev-server",
     "build": "webpack"
