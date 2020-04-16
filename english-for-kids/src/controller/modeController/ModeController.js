@@ -10,4 +10,8 @@ class ModeController {
     setCategory(id) {
         this.model.createCategory( (this.data.filter( category => category.id === id ))[0] );
     }
+
+    createCards(){
+        this.view.drawCards(this.model.category);
+    }
 }

@@ -12,6 +12,7 @@ class View {
 
     this.hamburger.addEventListener('click', this.clickHamburgerHandler.bind(this));
     this.navigation.addEventListener('click', this.clickLinksHandler.bind(this));
+    this.switcher.addEventListener('click', this.clickSwitcherHandler.bind(this));
   }
 
   clickHamburgerHandler()  {
@@ -25,7 +26,16 @@ class View {
   clickLinksHandler (e) {
     if (e.target.tagName === 'LI') {
         this.closeMobileMenu();
+        if(e.target.id === 'maine-page__link') {
+          this.emmit('main_page_requested');
+        } else {
+          this.emmit('category_requested', e.target.getAttribute('data-id'));
+        }
     }
+  }
+
+  clickSwitcherHandler() {
+    this.emmit('toggle_switched');
   }
 
   openMobileMenu() {
