@@ -1,9 +1,10 @@
 class Card {
-    constructor(id, word, translate, img) {
+    constructor(id, word, translation, img, audioSrc) {
         this.id = id;
         this.word = word;
-        this.translate = translate;
+        this.translation = translation;
         this.img = img;
+        this.audioSrc = audioSrc;
     }
 }
 

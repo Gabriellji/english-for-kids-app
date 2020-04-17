@@ -16,8 +16,12 @@ class Model {
     }
 
     setCategory(id) {
-        this.createCategory( (this.data.filter( category => category.id === id ))[0] );
+        this.createCategory( (this.data.filter( category => category.id === Number(id) ))[0] );
         this.emit('category_changed');
+    }
+
+    getCard(id){
+      return (this.category.cards.filter( card => card.id === Number(id) ))[0];
     }
 
     createCategory({id, title, img, words}) {

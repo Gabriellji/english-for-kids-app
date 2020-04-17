@@ -7,14 +7,10 @@ const eventMixin = {
       this._eventHandlers[eventName].push(handler);
     },
 
-    off(eventName, handler) {
+    off(eventName) {
       let handlers = this._eventHandlers && this._eventHandlers[eventName];
       if (!handlers) return;
-      for (let i = 0; i < handlers.length; i++) {
-        if (handlers[i] === handler) {
-          handlers.splice(i--, 1);
-        }
-      }
+      handlers.length = 0;
     },
 
     emit(eventName, ...args) {

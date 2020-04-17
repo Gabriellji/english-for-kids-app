@@ -7,7 +7,8 @@ class TrainModeController extends ModeController {
     }
 
     cardHandler(id) {
-     
+     this.view.flipCard(id);
+     this.playWord(this.model.getCard(id).audioSrc);
     }
 }
 

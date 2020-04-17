@@ -17,8 +17,10 @@ class View {
   }
 
   clickCardsHandler(e) {
-    const card_id = e.target.getAttribute('data-id')
+   const card = e.target.closest('.card');
+    const card_id = card.getAttribute('data-id');
     this.emit('card_clicked', card_id);
+   
   }
 
   clickHamburgerHandler()  {
@@ -40,6 +42,10 @@ class View {
     }
   }
 
+  leaveCardHandler(e) {
+    e.target.classList.remove('is-flipped');
+  }
+
   clickSwitcherHandler() {
     this.emit('toggle_switched');
   }
@@ -56,21 +62,22 @@ class View {
   }
 
   flipCard(id) {
-    const card = this.cardsContainer.querySelector(`[data_id="${id}"]`);
+    const card = this.cardsContainer.querySelector(`[data-id="${id}"]`);
     card.classList.toggle('is-flipped');
+
   }
 
   cleanPage() {
     this.cardsContainer.innerHTML = '';
   }
 
-  drawCard (id, word, img, translate='null') {
+  drawCard (id, word, img, translation) {
     const container = document.createElement('div');
     container.classList.add('scene');
 
     const innerContainer = document.createElement('div');
     innerContainer.classList.add('card');
-    innerContainer.setAttribute('data_id', id);
+    innerContainer.setAttribute('data-id', id);
 
     container.appendChild(innerContainer);
 
@@ -92,7 +99,7 @@ class View {
     title.textContent = word;
 
     const titleBack = document.createElement('span');
-    titleBack.textContent = translate;
+    titleBack.textContent = translation;
 
     card.appendChild(image);
     card.appendChild(title);
@@ -104,11 +111,13 @@ class View {
     innerContainer.appendChild(cardFacaBack);
 
     this.cardsContainer.appendChild(container);
+
+    innerContainer.addEventListener('mouseleave', this.leaveCardHandler.bind(this));
   }
 
   drawCards(arrayCards) {
-    arrayCards.forEach(({id, word, translate, img}) => {
-      this.drawCard(id, word, img, translate);
+    arrayCards.forEach(({id, word, translation, img}) => {
+      this.drawCard(id, word, img, translation);
     });
   }
 
@@ -117,12 +126,12 @@ class View {
     listLink.setAttribute('data-id', id);
     listLink.textContent = text;
 
-    this.link_container.appendChild(listLink);
+    this.menu.appendChild(listLink);
   }
 
   drowMenu(arrayMenu) {
-    arrayMenu.forEach((link) => {
-      this.drowMenuItem(link.category, link.id);
+    arrayMenu.items.forEach((link) => {
+      this.drowMenuItem(link.word, link.id);
     });
   }
 

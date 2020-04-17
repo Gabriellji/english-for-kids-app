@@ -10,6 +10,13 @@ class ModeController {
         this.view.cleanPage();
         this.view.drawCards(this.model.category.cards);
     }
+
+    playWord(src){
+        const audio = new Audio();
+        audio.preload = 'auto';
+        audio.src = src;
+        audio.play();
+    }
 }
 
 Object.assign(ModeController.prototype, eventMixin);
