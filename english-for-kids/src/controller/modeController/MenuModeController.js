@@ -6,13 +6,13 @@ class MenuModeController extends ModeController {
         this.createCards();
     }
 
-    // init() {
-    //     this.createCards();
-    // }
-
     createCards(){
         this.view.cleanPage();
         this.view.drawCards(this.model.menu.items);
+    }
+
+    cardHandler(id) {
+       this.emit('category_requested', id);
     }
 }
 

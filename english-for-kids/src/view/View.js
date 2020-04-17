@@ -13,6 +13,12 @@ class View {
     this.hamburger.addEventListener('click', this.clickHamburgerHandler.bind(this));
     this.navigation.addEventListener('click', this.clickLinksHandler.bind(this));
     this.switcher.addEventListener('click', this.clickSwitcherHandler.bind(this));
+    this.cardsContainer.addEventListener('click', this.clickCardsHandler.bind(this));
+  }
+
+  clickCardsHandler(e) {
+    const card_id = e.target.getAttribute('data-id')
+    this.emit('card_clicked', card_id);
   }
 
   clickHamburgerHandler()  {

@@ -1,3 +1,5 @@
+import eventMixin from "../../mixins/eventMixin";
+
 class ModeController {
     constructor(view, model) {
         this.view = view;
@@ -9,5 +11,7 @@ class ModeController {
         this.view.drawCards(this.model.category.cards);
     }
 }
+
+Object.assign(ModeController.prototype, eventMixin);
 
 export default ModeController;

@@ -16,7 +16,8 @@ class Model {
     }
 
     setCategory(id) {
-        this.model.createCategory( (this.data.filter( category => category.id === id ))[0] );
+        this.createCategory( (this.data.filter( category => category.id === id ))[0] );
+        this.emit('category_changed');
     }
 
     createCategory({id, title, img, words}) {
