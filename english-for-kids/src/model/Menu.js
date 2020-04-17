@@ -8,7 +8,7 @@ class Menu {
     createItems(array) {
         const items = [];
         array.forEach(function ({ id, title, img }) {
-            items.push(new Card(id, title, null, img ));
+            items.push(new Card(id, title, null, img));
         });
         return items;
     }

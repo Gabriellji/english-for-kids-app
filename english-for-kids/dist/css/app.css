@@ -244,6 +244,10 @@
             transform: rotate(16deg);
             transition: all .2s linear;
           }
+
+          .main-cards-images .image-link .hidden {
+            display: none;
+          }
     
             .main-cards-images .image-link .arrow:hover {
               padding: 0 18px 10px 0;

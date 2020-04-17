@@ -5,14 +5,13 @@ class Category {
         this.id = id;
         this.title = title;
         this.img = img;
-        // this.translation = this.translation;
         this.cards = this.createCards(words);
     }
 
     createCards(array) {
         const cards = [];
-        array.forEach(function ({ id, word, translation, img, audioSrc }) {
-            cards.push(new Card(id, word, translation, img, audioSrc));
+        array.forEach(function ({ id, word, translation, img, audioSrc, arrow }) {
+            cards.push(new Card(id, word, translation, img, audioSrc, arrow));
         });
         return cards;
     }

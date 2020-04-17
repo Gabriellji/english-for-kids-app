@@ -58,4 +58,6 @@ module.exports = {
     },
 
     devtool: 'cheap-eval-source-map' // remove for build
+
+    
 };

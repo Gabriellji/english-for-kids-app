@@ -7,6 +7,7 @@ class View {
     this.navigation = document.querySelector('.header__navigation');
     this.hamburger = document.querySelector('.hamburger');
     this.cardsContainer = document.querySelector('.main-cards-images');
+  
     this.switcher = document.querySelector('input');
     this.overlay =  document.querySelector('.overlay');
 
@@ -62,16 +63,18 @@ class View {
   }
 
   flipCard(id) {
-    const card = this.cardsContainer.querySelector(`[data-id="${id}"]`);
-    card.classList.toggle('is-flipped');
-
+    const rotateTarget = this.cardsContainer.querySelector(`img[data-id="${id}"]`);
+    rotateTarget.onclick = function(){
+      const card = document.querySelector(`div[data-id="${id}"]`);
+      card.classList.add('is-flipped');
+    }
   }
 
   cleanPage() {
     this.cardsContainer.innerHTML = '';
   }
 
-  drawCard (id, word, img, translation) {
+  drawCard (id, word, img, translation, arrow) {
     const container = document.createElement('div');
     container.classList.add('scene');
 
@@ -98,11 +101,17 @@ class View {
     const title = document.createElement('span');
     title.textContent = word;
 
+    const arr = document.createElement('img');
+    arr.classList.add('arrow');
+    arr.setAttribute('src', arrow);
+    arr.setAttribute('data-id', id);
+
     const titleBack = document.createElement('span');
     titleBack.textContent = translation;
 
     card.appendChild(image);
     card.appendChild(title);
+    card.appendChild(arr);
 
     cardFacaBack.appendChild(imageBack);
     cardFacaBack.appendChild(titleBack);
@@ -116,8 +125,8 @@ class View {
   }
 
   drawCards(arrayCards) {
-    arrayCards.forEach(({id, word, translation, img}) => {
-      this.drawCard(id, word, img, translation);
+    arrayCards.forEach(({id, word, translation, img, arrow}) => {
+      this.drawCard(id, word, img, translation, arrow);
     });
   }
 
@@ -134,6 +143,24 @@ class View {
       this.drowMenuItem(link.word, link.id);
     });
   }
+
+  // drawArrow() {
+  //   const card = document.querySelector('.image-link');
+  //   const arr = document.createElement('img');
+  //   arr.classList.add('arrow');
+  //   arr.setAttribute('src', '/assets/img/rotate.svg' );
+  //   card.appendChild(arr);
+  // }
+
+  // drawArrows() {
+  //   const cards = document.querySelectorAll('.image-link');
+  //   cards.forEach((el) => {
+  //     console.log(el);
+  //     this.drawArrow(el);
+  //   })
+  // }
+
+  
 
   drowButton() {
     const button = document.createElement('button');
