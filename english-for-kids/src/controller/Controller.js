@@ -14,7 +14,7 @@ class Controller {
     setModeController(mode){
         if(mode === 'menu') {
             this.modeController = new MenuModeController(this.view, this.model);
-            this.modeController.init();
+            // this.modeController.init();
         }
     }
 
