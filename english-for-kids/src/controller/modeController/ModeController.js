@@ -9,7 +9,6 @@ class ModeController {
     createCards(){
         this.view.cleanPage();
         this.view.drawCards(this.model.category.cards);
-        // this.view.drawArrows();
     }
 
     playWord(src){

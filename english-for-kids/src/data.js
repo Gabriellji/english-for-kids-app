@@ -1,4 +1,10 @@
 
+
+
+
+
+
+
 export default  [
     {
         title: 'Action (set A)',
@@ -10,7 +16,6 @@ export default  [
               translation: 'плакать',
               img: '/assets/img/cry.jpg',
               audioSrc: '/assets/audio/cry.mp3',
-              arrow: '/assets/img/rotate.svg',
               id:1
             },
             {
@@ -18,7 +23,6 @@ export default  [
                 translation: 'танцевать',
                 img: '/assets/img/dance.jpg',
                 audioSrc: '/assets/audio/dance.mp3',
-                arrow: '/assets/img/rotate.svg',
                 id:2
               },
               {
@@ -26,7 +30,6 @@ export default  [
                 translation: 'нырять',
                 img: '/assets/img/dive.jpg',
                 audioSrc: '/assets/audio/dive.mp3',
-                arrow: '/assets/img/rotate.svg',
                 id:3
               },
               {
@@ -34,7 +37,6 @@ export default  [
                 translation: 'рисовать',
                 img: '/assets/img/draw.jpg',
                 audioSrc: '/assets/audio/draw.mp3',
-                arrow: '/assets/img/rotate.svg',
                 id:4
               },
               {
@@ -42,7 +44,6 @@ export default  [
                 translation: 'ловить рыбу',
                 img: '/assets/img/fish.jpg',
                 audioSrc: '/assets/audio/fish.mp3',
-                arrow: '/assets/img/rotate.svg',
                 id:5
               },
               {
@@ -50,7 +51,6 @@ export default  [
                 translation: 'летать',
                 img: '/assets/img/fly.jpg',
                 audioSrc: '/assets/audio/fly.mp3',
-                arrow: '/assets/img/rotate.svg',
                 id:6
               },
               {
@@ -58,7 +58,6 @@ export default  [
                 translation: 'обнимать',
                 img: '/assets/img/hug.jpg',
                 audioSrc: '/assets/audio/hug.mp3',
-                arrow: '/assets/img/rotate.svg',
                 id:7
               },
               {
@@ -66,7 +65,6 @@ export default  [
                 translation: 'прыгать',
                 img: '/assets/img/jump.jpg',
                 audioSrc: '/assets/audio/jump.mp3',
-                arrow: '/assets/img/rotate.svg',
                 id:8
               },
         ]
@@ -81,7 +79,6 @@ export default  [
                 translation: 'открывать',
                 img: '/assets/img/open.jpg',
                 audioSrc: '/assets/audio/open.mp3',
-                arrow: '/assets/img/rotate.svg',
                 id:9
               },
               {
@@ -89,7 +86,6 @@ export default  [
                 translation: 'играть',
                 img: '/assets/img/play.jpg',
                 audioSrc: '/assets/audio/play.mp3',
-                arrow: '/assets/img/rotate.svg',
                 id:10,
               },
               {
@@ -97,7 +93,6 @@ export default  [
                 translation: 'указывать',
                 img: '/assets/img/point.jpg',
                 audioSrc: '/assets/audio/point.mp3',
-                arrow: '/assets/img/rotate.svg',
                 id:11
               },
               {
@@ -105,7 +100,6 @@ export default  [
                 translation: 'ездить',
                 img: '/assets/img/ride.jpg',
                 audioSrc: '/assets/audio/ride.mp3',
-                arrow: '/assets/img/rotate.svg',
                 id:12,
               },
               {
@@ -113,15 +107,13 @@ export default  [
                 translation: 'бегать',
                 img: '/assets/img/run.jpg',
                 audioSrc: '/assets/audio/run.mp3',
-                arrow: '/assets/img/rotate.svg',
                 id:13
               },
               {
                 word: 'sing',
                 translation: 'петь',
                 img: '/assets/img/sing.jpg',
-                audioSrc: '/assets/audio/sing.mp3',
-                arrow: '/assets/img/rotate.svg',
+                audioSrc: '/assets//assets/audio/sing.mp3',
                 id:14
               },
               {
@@ -129,7 +121,6 @@ export default  [
                 translation: 'пропускать, прыгать',
                 img: '/assets/img/skip.jpg',
                 audioSrc: '/assets/audio/skip.mp3',
-                arrow: '/assets/img/rotate.svg',
                 id:15
               },
               {
@@ -137,7 +128,6 @@ export default  [
                 translation: 'плавать',
                 img: '/assets/img/swim.jpg',
                 audioSrc: '/assets/audio/swim.mp3',
-                arrow: '/assets/img/rotate.svg',
                 id:16
               },
         ]
