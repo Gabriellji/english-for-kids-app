@@ -6,6 +6,7 @@ import data from '../data';
 class Model {
     constructor(mode) {
         this.mode = mode;
+        this.isMenuMode = true;
         this.data = data;
         this.createMenu(this.data); 
     }
@@ -17,11 +18,17 @@ class Model {
 
     setCategory(id) {
         this.createCategory( (this.data.filter( category => category.id === Number(id) ))[0] );
+        this.isMenuMode = false;
         this.emit('category_changed');
     }
 
-    getCard(id){
+    getCard(id) {
       return (this.category.cards.filter( card => card.id === Number(id) ))[0];
+    }
+
+    getAllCards() {
+        return this.category.cards;
+        
     }
 
     createCategory({id, title, img, words}) {

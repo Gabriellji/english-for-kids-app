@@ -1,5 +1,6 @@
 import MenuModeController from './modeController/MenuModeController';
 import TrainModeController from './modeController/TrainModeController';
+import PlayModeController from './modeController/PlayModeController';
 class Controller {
     constructor(view, model) {
         this.view = view;
@@ -20,11 +21,15 @@ class Controller {
             this.view.off('card_clicked', this.modeController.cardHandler.bind(this.modeController));
         }
         if(isMenu) {
+            this.model.isMenuMode = true;
             this.modeController = new MenuModeController(this.view, this.model);
             this.modeController.on('category_requested', this.model.setCategory.bind(this.model));
         } else {
             if (this.model.mode === 'train') {
                 this.modeController = new TrainModeController(this.view, this.model);
+            }
+            if (this.model.mode === 'play') {
+                this.modeController = new PlayModeController(this.view, this.model);
             }
         }
         this.view.on('card_clicked', this.modeController.cardHandler.bind(this.modeController));
@@ -35,6 +40,9 @@ class Controller {
     }
 
     modeHandler(mode) {
+        if(!this.model.isMenuMode) {
+            this.setModeController();
+        }
         this.view.changeBackgroundColor(mode);
     }
 }
