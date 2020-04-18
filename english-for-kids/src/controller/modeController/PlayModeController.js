@@ -11,6 +11,7 @@ class PlayModeController extends ModeController {
     }
 
     init() {
+        this.view.playModeView();
         this.view.drawButton();
         this.round = 1;
         this.roundList = this.model.getAllCards().map((el) => {
@@ -35,8 +36,10 @@ class PlayModeController extends ModeController {
         this.view.drawScore(this.roundList.map(round => round.point).filter(p => p != null));
         if(this.checkCorrectAnswer(id)) {
            this.setPoint(true);
-           this.round++ ;
+           this.view.clickedCard(id);
+           
            this.playWord('/assets/audio/correct.mp3');
+           this.round++;
            this.roundStart();
         } else {
             this.setPoint(false);
@@ -51,10 +54,12 @@ class PlayModeController extends ModeController {
         this.view.off('play_button_pushed');
         if (score === this.roundList.length) {
             this.view.showWinResult();
+            this.playWord('/assets/audio/success.mp3');
             
         } 
         else {
             this.view.showFailResult();
+            this.playWord('/assets/audio/failure.mp3');
         }
        this.view.cleanScoreContainer();
 

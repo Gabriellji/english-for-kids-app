@@ -2,12 +2,14 @@ import eventMixin from "../mixins/eventMixin";
 
 class View {
   constructor() {
+
     this.body = document.querySelector('body');
     this.menu = document.querySelector('#menu');
     this.navigation = document.querySelector('.header__navigation');
     this.hamburger = document.querySelector('.hamburger');
     this.cardsContainer = document.querySelector('.main-cards-images');
     this.scoreContainer = document.querySelector('.score');
+    this.card = document.querySelector('.image-link');
     
   
     this.switcher = document.querySelector('input');
@@ -39,6 +41,7 @@ class View {
         this.closeMobileMenu();
         if(e.target.id === 'maine-page__link') {
           this.emit('main_page_requested');
+          this.cleanScoreContainer();
         } else {
           this.emit('category_requested', e.target.getAttribute('data-id'));
         }
@@ -80,9 +83,16 @@ class View {
   }
 
   playModeView() {
-    this.card.forEach(el => {
+    const card = document.querySelectorAll('.image-link');
+    card.forEach(el => {
       el.classList.add('play');
     })
+  }
+
+  clickedCard(id){
+    
+    const card = this.cardsContainer.querySelector(`[data-id="${id}"]`);
+    card.classList.add('clicked-card');
   }
 
   cleanPage() {
@@ -106,7 +116,7 @@ class View {
     });
   }
 
-  drawCard (id, word, img, translation, arrow=false) {
+  drawCard (id, word, img, translation) {
     const container = document.createElement('div');
     container.classList.add('scene');
 
@@ -135,8 +145,7 @@ class View {
 
     // const arr = document.createElement('img');
     // arr.classList.add('arrow');
-    // arr.setAttribute('src', arrow);
-    // arr.setAttribute('data-id', id);
+    // arr.setAttribute('src', '/assets/img/rotate.jpg');
 
     const titleBack = document.createElement('span');
     titleBack.textContent = translation;
@@ -179,6 +188,7 @@ class View {
   drawButton() {
     const button = document.createElement('button');
     button.classList.add('button-start');
+    button.innerText = 'Start Game';
     this.cardsContainer.appendChild(button);
     button.addEventListener('click', this.clickPlayButtonHandler.bind(this));
   }

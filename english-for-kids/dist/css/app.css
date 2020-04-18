@@ -24,15 +24,16 @@
         }
       
         .header__logo-line {
-        display: flex;
-        position: absolute;
-        width: 100%;
-        justify-content: space-between;
-        margin-top: 20px;
-        z-index: 101;
-        padding: 10px 30px;
-        max-width: 1380px;
-        }
+          display: flex;
+          width: 100%;
+          max-height: 70px;
+          justify-content: space-between;
+          margin-top: 20px;
+          z-index: 101;
+          padding: 10px 60px;
+          /* max-width: 1380px; */
+          align-items: center;
+      }
         
         .header__logo-line .logo-hamburger {
         display:flex;
@@ -104,7 +105,6 @@
      
     
          .header__navigation li:hover {
-          animation-name: test 1s linear;
           animation: blur 1s ease-out;
           text-shadow: 0px 0px 15px #fff, 0px 0px 17px #fff;
           transition:color .7s ease-in-out;
@@ -117,6 +117,14 @@
         display:flex;
         flex-direction: column;
     
+        }
+
+        .logo-kids {
+          display: contents;
+        } 
+
+        .logo-kids img {
+          width: 29%;
         }
     
         .toggle {
@@ -169,7 +177,7 @@
         .wrapper {
           display: flex;
           flex-wrap: wrap;
-          padding: 20px 15px;
+          /* padding: 20px 15px; */
           max-width: 1440px;
           margin: auto;
         }
@@ -208,7 +216,10 @@
           text-align: center;
           flex-direction: unset;
         }
-        /**/
+      
+        .wrapper .main-cards-images .scene .clicked-card {
+          filter: contrast(0.5);
+        }
       
         .main-cards-images .image-link:hover {
           box-shadow: 0 10px 30px 0 rgba(0,0,0,.3), 0 2px 10px 0 rgba(0,0,0,.12);
@@ -225,13 +236,8 @@
             /* Play */
           .main-cards-images .scene .card .play img {
             height: 260px;
-            max-width: 126%;
+            max-width: 120%;
           }
-    
-          .play-span {
-            display: none;
-          }
-          /**/
     
           .main-cards-images .image-link .arrow {
             position: absolute;
@@ -262,7 +268,7 @@
           .scene {
             width: 280px;
             height: 265px;
-            margin: 40px 25px;
+            margin: 25px 25px;
             perspective: 600px;
             }
     
@@ -328,34 +334,29 @@
               0px -10px 100px #7B96B8;
           }
         }
-      
-        @keyframes test {
-          from{
-              font-size:1.05rem;
-              font-size:1.10rem;
-              font-size:1.20rem;
-              font-size:1.30rem;
-          }
-          to{
-              font-size: 1.40rem;}
-          }
-        
           
       
           .button-start {
-            width: 136px;
+            width: 160px;
             border: none;
-            height: 35px;
-            background: #FBC65F;
-            color: #886A30;
+            height: 45px;
+            background: linear-gradient(to top right, #ffcc00 0%, #ff00ff 100%);
+            color: ivory;
             cursor: pointer;
-            text-transform: uppercase;
             border-radius: 5px;
+            font-family: Roboto;
+            font-size: 20px;
+            font-weight: 600;
+            outline: none;
+            transition:color .7s ease-in-out;
+  
           }
 
-          /* .image {
-            visibility: hidden;
-          } */
+          .button-start:hover{
+            animation: blur 1s ease-out;
+            text-shadow: 0px 0px 15px #fff, 0px 0px 17px #fff;
+          
+          }
 
           .finish-round-succes {
             visibility: hidden;
