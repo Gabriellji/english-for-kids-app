@@ -30,6 +30,7 @@ class Controller {
             }
             if (this.model.mode === 'play') {
                 this.modeController = new PlayModeController(this.view, this.model);
+                this.modeController.on('main_page_requested', (() => this.setModeController(true)).bind(this));
             }
         }
         this.view.on('card_clicked', this.modeController.cardHandler.bind(this.modeController));

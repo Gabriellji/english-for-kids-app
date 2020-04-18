@@ -1,10 +1,3 @@
-
-
-
-
-
-
-
 export default  [
     {
         title: 'Action (set A)',
@@ -113,7 +106,7 @@ export default  [
                 word: 'sing',
                 translation: 'петь',
                 img: '/assets/img/sing.jpg',
-                audioSrc: '/assets//assets/audio/sing.mp3',
+                audioSrc: '/assets/audio/sing.mp3',
                 id:14
               },
               {

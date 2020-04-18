@@ -7,6 +7,7 @@ class View {
     this.navigation = document.querySelector('.header__navigation');
     this.hamburger = document.querySelector('.hamburger');
     this.cardsContainer = document.querySelector('.main-cards-images');
+    this.scoreContainer = document.querySelector('.score');
     
   
     this.switcher = document.querySelector('input');
@@ -52,6 +53,10 @@ class View {
     this.emit('toggle_switched');
   }
 
+  clickPlayButtonHandler(){
+    this.emit('play_button_pushed');
+  }
+
   openMobileMenu() {
     this.overlay.classList.add('hidden-overlay');
     this.hamburger.classList.add('clicked__hamburger');
@@ -82,6 +87,23 @@ class View {
 
   cleanPage() {
     this.cardsContainer.innerHTML = '';
+  }
+
+  cleanScoreContainer() {
+    this.scoreContainer.innerHTML = '';
+  }
+
+  drawScore(roundArray){
+    this.scoreContainer.innerHTML = '';
+    roundArray.forEach(round => {
+      const star = document.createElement('img');
+      if(round) {
+        star.setAttribute('src','/assets/img/star-win.svg');
+      } else {
+        star.setAttribute('src','/assets/img/star.svg')
+      }
+      this.scoreContainer.appendChild(star);
+    });
   }
 
   drawCard (id, word, img, translation, arrow=false) {
@@ -154,28 +176,11 @@ class View {
     });
   }
 
-  // drawArrow() {
-  //   const card = document.querySelector('.image-link');
-  //   const arr = document.createElement('img');
-  //   arr.classList.add('arrow');
-  //   arr.setAttribute('src', '/assets/img/rotate.svg' );
-  //   card.appendChild(arr);
-  // }
-
-  // drawArrows() {
-  //   const cards = document.querySelectorAll('.image-link');
-  //   cards.forEach((el) => {
-  //     console.log(el);
-  //     this.drawArrow(el);
-  //   })
-  // }
-
-  
-
-  drowButton() {
+  drawButton() {
     const button = document.createElement('button');
     button.classList.add('button-start');
     this.cardsContainer.appendChild(button);
+    button.addEventListener('click', this.clickPlayButtonHandler.bind(this));
   }
 
   changeBackgroundColor(mode) {
@@ -188,6 +193,23 @@ class View {
       imageColor.forEach(b => b.style.background = 'linear-gradient(to top right, #ffcc00 0%, #ff00ff 100%)');
     }
   }
+
+  showWinResult(){
+    const image = document.querySelector('.finish-round-succes');
+    image.style.visibility = 'unset';
+  }
+
+  showFailResult(){
+    const image = document.querySelector('.finish-round-failure');
+    image.style.visibility = 'unset';
+  }
+
+  hideResult(){
+    const image = document.querySelectorAll('.image');
+    image.forEach(img => img.style.visibility = 'hidden');
+    
+  }
+
 }
 
 Object.assign(View.prototype, eventMixin);
