@@ -19,13 +19,6 @@ class Statistic {
     }
 
     setStatistic(id, parameter) { 
-        // this.words.forEach( category => {
-        //     category.forEach( word => {
-        //         if(word.id === id) {
-        //             searchWord = word;
-        //         }
-        //     })
-        // })
         for(let category of this.words) {
             let flag = false;
             for(let word of category.words) {

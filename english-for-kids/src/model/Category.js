@@ -5,7 +5,6 @@ class Category {
         this.id = id;
         this.title = title;
         this.img = img;
-        // this.translation = this.translation;
         this.cards = this.createCards(words);
     }
 
