@@ -11,12 +11,17 @@ class Controller {
 
         this.view.on('toggle_switched', this.toggleHandler.bind(this));
         this.view.on('main_page_requested', (() => this.setModeController(true)).bind(this));
+        this.view.on('statistic_requested', this.getStatistic.bind(this));
         this.view.on('category_requested', this.model.setCategory.bind(this.model));
         this.model.on('mode_changed', this.modeHandler.bind(this));
         this.model.on('category_changed', this.setModeController.bind(this));
+        this.view.on('reset_stat_clicked', (() => { this.model.statistic.reset();
+        this.getStatistic();
+        }).bind(this));
     }
 
     setModeController(isMenu = false){
+        this.view.hideStatistic();
         if(this.modeController){
             this.view.off('card_clicked', this.modeController.cardHandler.bind(this.modeController));
         }
@@ -34,6 +39,12 @@ class Controller {
             }
         }
         this.view.on('card_clicked', this.modeController.cardHandler.bind(this.modeController));
+    }
+
+    getStatistic() {
+        this.view.drawStatistic(this.model.statistic.getWords());
+        this.view.cleanPage();
+        this.view.showStatistic();
     }
 
     toggleHandler() {

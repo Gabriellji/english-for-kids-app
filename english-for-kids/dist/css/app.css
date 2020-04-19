@@ -250,8 +250,8 @@
     
           .main-cards-images .image-link .arrow {
             position: absolute;
-            width: 20px;
-            height: 20px;
+            /* width: 20px; */
+            height: 30px;
             filter: invert(1);
             right: 0;
             bottom: 0;
@@ -400,7 +400,7 @@
             display: flex;
             justify-content: flex-end;
             width: 100%;
-            height: 60px;
+            height: 77px;
             padding: 10px 17px;
             overflow: hidden;
           }
@@ -419,7 +419,7 @@
             padding: 10px 0;
           }
 
-          .controls__reset-button {
+          .reset-button {
             flex-shrink: 0;
             padding: 10px 25px;
             margin-top: 10px;
@@ -442,7 +442,7 @@
             user-select: none;
           }
 
-          .fieldset p {
+          .fieldset__filter-wrapper {
             display: inline-block;
             padding: 0;
             margin: 0 20px 10px 0;

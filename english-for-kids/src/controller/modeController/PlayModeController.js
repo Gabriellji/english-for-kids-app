@@ -37,25 +37,26 @@ class PlayModeController extends ModeController {
         if(!this.isStart) return;
         if(this.checkCorrectAnswer(id)) {
            this.setPoint(true);
+           this.model.statistic.setStatistic(id, 'correctAnswer');
            this.view.clickedCard(id);
            this.playWord('/assets/audio/correct.mp3');
            this.round++;
            this.roundStart();
         } else {
             this.setPoint(false);
+            this.model.statistic.setStatistic(id, 'errorAnswer');
             this.playWord('/assets/audio/error.mp3');
         }
         
     }
 
     gameOver() {
-        const points = this.roundList.map(round => round.point);
-        const score = points.reduce((acc, point) => point ? acc + 1 : acc, 0);
+        // const points = this.roundList.map(round => round.point);
+        const score = this.points.reduce((acc, point) => point ? acc * 1 : acc * 0, 1);
         this.view.off('play_button_pushed');
-        if (score === this.roundList.length) {
+        if (score > 0) {
             this.view.showWinResult();
-            this.playWord('/assets/audio/success.mp3');
-            
+            this.playWord('/assets/audio/success.mp3'); 
         } 
         else {
             this.view.showFailResult();

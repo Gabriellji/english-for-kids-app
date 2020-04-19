@@ -1,6 +1,7 @@
 import Category from './Category';
 import eventMixin from '../mixins/eventMixin';
 import Menu from './Menu';
+import Statistic from './Statistic';
 import data from '../data';
 
 class Model {
@@ -8,6 +9,7 @@ class Model {
         this.mode = mode;
         this.isMenuMode = true;
         this.data = data;
+        this.statistic = new Statistic;
         this.createMenu(this.data); 
     }
 

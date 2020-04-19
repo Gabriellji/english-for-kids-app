@@ -10,7 +10,10 @@ class View {
     this.cardsContainer = document.querySelector('.main-cards-images');
     this.scoreContainer = document.querySelector('.score');
     this.card = document.querySelector('.image-link');
+    this.resetStat = document.querySelector('.reset-button');
+    this.statContainer = document.querySelector('.statist');
     
+    this.statTable = document.querySelector('#tbody');
   
     this.switcher = document.querySelector('input');
     this.overlay =  document.querySelector('.overlay');
@@ -19,6 +22,11 @@ class View {
     this.navigation.addEventListener('click', this.clickLinksHandler.bind(this));
     this.switcher.addEventListener('click', this.clickSwitcherHandler.bind(this));
     this.cardsContainer.addEventListener('click', this.clickCardsHandler.bind(this));
+    this.resetStat.addEventListener('click', this.clickResetHandler.bind(this));
+  }
+
+  clickResetHandler() {
+    this.emit('reset_stat_clicked');
   }
 
   clickCardsHandler(e) {
@@ -42,6 +50,8 @@ class View {
         if(e.target.id === 'maine-page__link') {
           this.emit('main_page_requested');
           this.cleanScoreContainer();
+        } else if (e.target.id === 'statistic__link'){
+          this.emit('statistic_requested');
         } else {
           this.emit('category_requested', e.target.getAttribute('data-id'));
         }
@@ -72,14 +82,12 @@ class View {
   }
 
   flipCard(id) {
-    // const rotateTarget = this.cardsContainer.querySelector(`img[data-id="${id}"]`);
-    // rotateTarget.onclick = function(){
-    //   const card = document.querySelector(`div[data-id="${id}"]`);
-    //   card.classList.add('is-flipped');
-    // }
-
     const card = this.cardsContainer.querySelector(`[data-id="${id}"]`);
     card.classList.toggle('is-flipped');
+
+    setTimeout((() => {
+      card.addEventListener('mouseleave', this.leaveCardHandler.bind(this));
+    }).bind(this), 800);
   }
 
   playModeView() {
@@ -89,8 +97,14 @@ class View {
     })
   }
 
+  showStatistic() {
+    this.statContainer.style.visibility = 'unset';
+  }
+  hideStatistic() {
+    this.statContainer.style.visibility = 'hidden';
+  }
+
   clickedCard(id){
-    
     const card = this.cardsContainer.querySelector(`[data-id="${id}"]`);
     card.classList.add('clicked-card');
   }
@@ -116,7 +130,7 @@ class View {
     });
   }
 
-  drawCard (id, word, img, translation) {
+  drawCard (id, word, img, translation, isArrow) {
     const container = document.createElement('div');
     container.classList.add('scene');
 
@@ -143,16 +157,22 @@ class View {
     const title = document.createElement('span');
     title.textContent = word;
 
-    // const arr = document.createElement('img');
-    // arr.classList.add('arrow');
-    // arr.setAttribute('src', '/assets/img/rotate.jpg');
+ 
+      const arr = document.createElement('img');
+    arr.classList.add('arrow');
+    arr.setAttribute('src', '../assets/img/rotate.svg');
+   
+    
 
     const titleBack = document.createElement('span');
     titleBack.textContent = translation;
 
     card.appendChild(image);
     card.appendChild(title);
-    // card.appendChild(arr);
+    if(isArrow) {
+      card.appendChild(arr);
+    }
+   
 
     cardFacaBack.appendChild(imageBack);
     cardFacaBack.appendChild(titleBack);
@@ -162,12 +182,13 @@ class View {
 
     this.cardsContainer.appendChild(container);
 
-    innerContainer.addEventListener('mouseleave', this.leaveCardHandler.bind(this));
+  
+    
   }
 
-  drawCards(arrayCards) {
+  drawCards(arrayCards, isArrow = false) {
     arrayCards.forEach(({id, word, translation, img}) => {
-      this.drawCard(id, word, img, translation);
+      this.drawCard(id, word, img, translation, isArrow);
     });
   }
 
@@ -177,6 +198,36 @@ class View {
     listLink.textContent = text;
 
     this.menu.appendChild(listLink);
+  }
+
+  drawStatistic(arr) {
+    this.statTable.innerHTML = '';
+    arr.forEach(word => {
+      const tr = document.createElement('tr');
+      const text = document.createElement('td');
+      const translate = document.createElement('td');
+      const trainClicks = document.createElement('td');
+      const correct = document.createElement('td');
+      const error = document.createElement('td');
+      const percent = document.createElement('td');
+
+      text.innerText = word.word;
+      translate.innerText = word.translation;
+      trainClicks.innerText = word.trainClicks;
+      correct.innerText = word.correctAnswer;
+      error.innerText = word.errorAnswer;
+      percent.innerText = ((word.errorAnswer / ( word.correctAnswer + word.errorAnswer)) * 100) || 0 ;
+
+      tr.appendChild(text);
+      tr.appendChild(translate);
+      tr.appendChild(trainClicks);
+      tr.appendChild(correct);
+      tr.appendChild(error);
+      tr.appendChild(percent);
+
+      this.statTable.appendChild(tr);
+
+    })
   }
 
   drowMenu(arrayMenu) {

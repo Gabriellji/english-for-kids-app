@@ -26,6 +26,7 @@
                 <nav class="header__navigation">
                      <ul class="navigation" id="menu" >
                          <li id="maine-page__link" data-id="0">Main Page</li>
+                         <li id="statistic__link">Statistic</li>
                      </ul>
                 </nav>
             </div>
@@ -40,49 +41,10 @@
         </div> 
 
         <!-- statistic -->
-        <div class="wrapper statist">
+        <div class="wrapper statist" style="visibility: hidden;">
             <h1 class="title">statistics</h1>
             <div class="panel">
-                <button class="controls__reset-button">Reset statistics</button>
-                <fieldset id="group" class="fieldset">
-                    <legend>Categories</legend>
-                    <p class="fieldset__filter-wrapper">
-                        <input type="radio" value="all" name="group" checked="" id="all">
-                        <label class="fieldset__text" for="all">all</label>
-                    </p>
-                    <p class="fieldset__filter-wrapper">
-                        <input type="radio" value="action(a)" name="group" id="action(a)">
-                        <label class="fieldset__text" for="action(a)">action(a)</label>
-                    </p>
-                    <p class="fieldset__filter-wrapper">
-                        <input type="radio" value="action(b)" name="group" id="action(b)">
-                        <label class="fieldset__text" for="action(b)">action(b)</label>
-                    </p>
-                    <p class="fieldset__filter-wrapper">
-                        <input type="radio" value="action(c)" name="group" id="action(c)">
-                        <label class="fieldset__text" for="action(c)">action(c)</label>
-                    </p>
-                    <p class="fieldset__filter-wrapper">
-                        <input type="radio" value="abjective" name="group" id="abjective">
-                        <label class="fieldset__text" for="abjective">abjective</label>
-                    </p>
-                    <p class="fieldset__filter-wrapper">
-                        <input type="radio" value="animal(a)" name="group" id="animal(a)">
-                        <label class="fieldset__text" for="animal(a)">animal(a)</label>
-                    </p>
-                    <p class="fieldset__filter-wrapper">
-                        <input type="radio" value="animal(b)" name="group" id="animal(b)">
-                        <label class="fieldset__text" for="animal(b)">animal(b)</label>
-                    </p>
-                    <p class="fieldset__filter-wrapper">
-                        <input type="radio" value="clothes" name="group" id="clothes">
-                        <label class="fieldset__text" for="clothes">clothes</label>
-                    </p>
-                    <p class="fieldset__filter-wrapper">
-                        <input type="radio" value="emotions" name="group" id="emotions">
-                        <label class="fieldset__text" for="emotions">emotions</label>
-                    </p>
-                </fieldset>
+                <button class="reset-button">Reset statistics</button>
             </div>
             <table class="statistic">
                <thead>
@@ -95,10 +57,8 @@
                     <th>% errors</th>
                    </tr>
                </thead>
-               <tbody>
-                   <tr>
-                       <td></td>
-                   </tr>
+               <tbody id="tbody">
+                
                </tbody>
 
             </table>

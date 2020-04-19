@@ -6,8 +6,42 @@ class Statistic {
         this.words = this.loadOrCreate();
     }
 
+    getWords(id = 'all'){
+        if(id === 'all') {
+          return this.words.reduce((acc, category) => {
+              return acc.concat(category.words).sort((a, b) => {
+                 return a.word.charCodeAt(0) - b.word.charCodeAt(0);
+              });
+            }, []);
+        } else {
+            return (this.words.filter( category => category.id === Number(id) ))[0].words;
+        }
+    }
+
+    setStatistic(id, parameter) { 
+        // this.words.forEach( category => {
+        //     category.forEach( word => {
+        //         if(word.id === id) {
+        //             searchWord = word;
+        //         }
+        //     })
+        // })
+        for(let category of this.words) {
+            let flag = false;
+            for(let word of category.words) {
+                if(word.id === Number(id)) {
+                   word[parameter] += 1;
+                   flag = true;
+                    break;
+                }
+                if(flag) break;
+            }
+        }
+        this.storage.setItem('statistic', JSON.stringify(this.words));
+    }
+
     loadOrCreate() {
-        words = this.storage.getItem('statistic');
+        let words = this.storage.getItem('statistic');
         if(!words) {
             words = this.createData();
             return words;
@@ -16,7 +50,7 @@ class Statistic {
     }
 
     createData() {
-        words = data.map( category => {
+       const words = data.map( category => {
             return {
                 id: category.id,
                 title: category.title,
@@ -27,13 +61,18 @@ class Statistic {
                         translation: word.translation,
                         trainClicks: 0,
                         correctAnswer: 0,
-                        errorAnswer: 0
+                        errorAnswer: 0,
                     })
                 )
             }
         });
         this.storage.setItem('statistic', JSON.stringify(words));
         return words
+    }
+
+    reset() {
+        this.storage.removeItem('statistic');
+        this.words = this.createData();
     }
 }
 

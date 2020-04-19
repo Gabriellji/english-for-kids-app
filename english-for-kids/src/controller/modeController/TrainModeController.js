@@ -6,9 +6,15 @@ class TrainModeController extends ModeController {
         this.createCards();
     }
 
+    createCards(){
+        this.view.cleanPage();
+        this.view.drawCards(this.model.category.cards, true);
+    }
+
     cardHandler(id) {
      this.view.flipCard(id);
      this.playWord(this.model.getCard(id).audioSrc);
+     this.model.statistic.setStatistic(id, 'trainClicks');
     }
 }
 
