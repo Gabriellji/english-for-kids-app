@@ -125,7 +125,8 @@
     
         }
         .logo {
-          display: contents;
+          display: flex;
+          justify-content: center;
         }
 
         .logo-kids {
@@ -134,6 +135,23 @@
 
         .logo img {
           width: 19%;
+          margin-right: 11px;
+       }
+
+       .logo .for {
+        width: 5%;
+        height: 2%;
+        margin: 0;
+       }
+
+       .logo .kids {
+        width: 28%;
+       }
+
+       @media (max-width: 600px) {
+        .logo {
+          display: none;
+        }
        }
     
         .toggle {
@@ -186,7 +204,7 @@
         .wrapper {
           display: flex;
           flex-wrap: wrap;
-          /* padding: 20px 15px; */
+          padding: 20px 15px;
           max-width: 1440px;
           margin: auto;
         }
@@ -277,7 +295,7 @@
           .scene {
             width: 280px;
             height: 265px;
-            margin: 25px 25px;
+            margin: 0 25px 25px;
             perspective: 600px;
             }
     
@@ -343,7 +361,9 @@
               0px -10px 100px #7B96B8;
           }
         }
-          
+          .button-box {
+            width: 100%;
+          }
       
           .button-start {
             width: 160px;
@@ -361,10 +381,19 @@
   
           }
 
-          .button-start:hover{
-            animation: blur 1s ease-out;
-            text-shadow: 0px 0px 15px #fff, 0px 0px 17px #fff;
-          
+          .repeat {
+            width: 47px;
+            border-radius: 50%;
+            background-image: url(../assets/img/repeat.svg);
+            background-size: cover;
+            -webkit-text-fill-color: transparent;
+            text-align: center;
+            transition: all .25s;
+
+          }
+
+          .repeat:hover{
+            transform: scale(1.5);
           }
 
           .finish-round-succes {
@@ -403,10 +432,10 @@
             height: 77px;
             padding: 10px 17px;
             overflow: hidden;
+            margin-top: 20px;
           }
 
           .statist {
-            min-height: 500px;
             display: flex;
             flex-direction: column;
           }

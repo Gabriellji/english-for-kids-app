@@ -68,6 +68,12 @@ class View {
 
   clickPlayButtonHandler(){
     this.emit('play_button_pushed');
+    this.repeatViewButton();
+  }
+
+  repeatViewButton() {
+    const button = document.querySelector('.button-start');
+    button.classList.add('repeat');
   }
 
   openMobileMenu() {
@@ -237,10 +243,13 @@ class View {
   }
 
   drawButton() {
+    const buttonContainer = document.createElement('div');
+    buttonContainer.classList.add('button-box');
     const button = document.createElement('button');
     button.classList.add('button-start');
     button.innerText = 'Start Game';
-    this.cardsContainer.appendChild(button);
+    buttonContainer.appendChild(button);
+    this.cardsContainer.appendChild(buttonContainer);
     button.addEventListener('click', this.clickPlayButtonHandler.bind(this));
   }
 

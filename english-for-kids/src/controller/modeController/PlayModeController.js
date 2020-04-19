@@ -16,9 +16,6 @@ class PlayModeController extends ModeController {
         this.view.drawButton(); 
         this.round = 1;
         this.roundList = this.model.getAllCards();
-        // .map((el) => {
-        //     return {...el, point: null};
-        // });
         this.shuffle(this.roundList);
     
     }
@@ -28,7 +25,6 @@ class PlayModeController extends ModeController {
         if(this.round > this.roundList.length) {
             this.gameOver();
         } else {
-            // this.view.drawScore(this.roundList.map(round => round.point).filter(p => p != null));
             this.playWord(this.roundList[this.round - 1].audioSrc);
         } 
     }
@@ -51,7 +47,6 @@ class PlayModeController extends ModeController {
     }
 
     gameOver() {
-        // const points = this.roundList.map(round => round.point);
         const score = this.points.reduce((acc, point) => point ? acc * 1 : acc * 0, 1);
         this.view.off('play_button_pushed');
         if (score > 0) {
@@ -77,9 +72,6 @@ class PlayModeController extends ModeController {
     setPoint(point) {
         this.points.push(point);
         this.view.drawScore(this.points);
-        // if(this.roundList[this.round -1 ].point === null) {
-        //     this.roundList[this.round -1].point = point;
-        // }
     }
 
     shuffle(activeCards) {
