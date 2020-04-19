@@ -15,9 +15,11 @@
                 <div class="logo-hamburger">
                     <span class="header__hamburger hamburger clicked__hamburger"><span class="hamburger__line"></span></span>
                 </div> 
-                <div class="logo-kids"><img src="assets/img/logEng.png" alt=""></div>
-                <div class="logo-kids"><img src="assets/img/toppng.com-children-holding-hands-png-600x211.png" alt="kids"></div> 
-                <div class="logo-kids"><img src="assets/img/kidslog.png" alt=""></div>
+                <div class="logo">
+                <img src="assets/img/logEng.png" alt="">
+               <img src="assets/img/toppng.com-children-holding-hands-png-600x211.png" alt="kids">
+                <img src="assets/img/kidslog.png" alt="">
+            </div>
                 <input class="toggle" type="checkbox" />
             </div>
             <div class="overlay">
@@ -31,11 +33,77 @@
     </header>
     <main>  
         <div class="wrapper">
-            <div class="score" style="width: 100%; height: 50px; padding: 20px;">
+            <div class="score">
             </div>
             <div class="main-cards-images">
             </div>
         </div> 
+
+        <!-- statistic -->
+        <div class="wrapper statist">
+            <h1 class="title">statistics</h1>
+            <div class="panel">
+                <button class="controls__reset-button">Reset statistics</button>
+                <fieldset id="group" class="fieldset">
+                    <legend>Categories</legend>
+                    <p class="fieldset__filter-wrapper">
+                        <input type="radio" value="all" name="group" checked="" id="all">
+                        <label class="fieldset__text" for="all">all</label>
+                    </p>
+                    <p class="fieldset__filter-wrapper">
+                        <input type="radio" value="action(a)" name="group" id="action(a)">
+                        <label class="fieldset__text" for="action(a)">action(a)</label>
+                    </p>
+                    <p class="fieldset__filter-wrapper">
+                        <input type="radio" value="action(b)" name="group" id="action(b)">
+                        <label class="fieldset__text" for="action(b)">action(b)</label>
+                    </p>
+                    <p class="fieldset__filter-wrapper">
+                        <input type="radio" value="action(c)" name="group" id="action(c)">
+                        <label class="fieldset__text" for="action(c)">action(c)</label>
+                    </p>
+                    <p class="fieldset__filter-wrapper">
+                        <input type="radio" value="abjective" name="group" id="abjective">
+                        <label class="fieldset__text" for="abjective">abjective</label>
+                    </p>
+                    <p class="fieldset__filter-wrapper">
+                        <input type="radio" value="animal(a)" name="group" id="animal(a)">
+                        <label class="fieldset__text" for="animal(a)">animal(a)</label>
+                    </p>
+                    <p class="fieldset__filter-wrapper">
+                        <input type="radio" value="animal(b)" name="group" id="animal(b)">
+                        <label class="fieldset__text" for="animal(b)">animal(b)</label>
+                    </p>
+                    <p class="fieldset__filter-wrapper">
+                        <input type="radio" value="clothes" name="group" id="clothes">
+                        <label class="fieldset__text" for="clothes">clothes</label>
+                    </p>
+                    <p class="fieldset__filter-wrapper">
+                        <input type="radio" value="emotions" name="group" id="emotions">
+                        <label class="fieldset__text" for="emotions">emotions</label>
+                    </p>
+                </fieldset>
+            </div>
+            <table class="statistic">
+               <thead>
+                   <tr>
+                    <th>text</th>
+                    <th>translate</th>
+                    <th>train clicks</th>
+                    <th>correct answer</th>
+                    <th>error answer</th>
+                    <th>% errors</th>
+                   </tr>
+               </thead>
+               <tbody>
+                   <tr>
+                       <td></td>
+                   </tr>
+               </tbody>
+
+            </table>
+        </div>
+        <!-- end statistic -->
         <div class="image finish-round-succes">
             <img src="assets/img/success.jpg" alt="success">
         </div> 
