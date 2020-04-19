@@ -4,6 +4,7 @@ class PlayModeController extends ModeController {
     constructor(view, model) {
         super(view, model);
         this.isStart = false;
+        this.points = [];
         this.createCards();
         this.init();
         this.view.on('play_button_pushed', this.roundStart.bind(this));
@@ -12,11 +13,12 @@ class PlayModeController extends ModeController {
 
     init() {
         this.view.playModeView();
-        this.view.drawButton();
+        this.view.drawButton(); 
         this.round = 1;
-        this.roundList = this.model.getAllCards().map((el) => {
-            return {...el, point: null};
-        });
+        this.roundList = this.model.getAllCards();
+        // .map((el) => {
+        //     return {...el, point: null};
+        // });
         this.shuffle(this.roundList);
     
     }
@@ -26,18 +28,16 @@ class PlayModeController extends ModeController {
         if(this.round > this.roundList.length) {
             this.gameOver();
         } else {
+            // this.view.drawScore(this.roundList.map(round => round.point).filter(p => p != null));
             this.playWord(this.roundList[this.round - 1].audioSrc);
-        }
-        
+        } 
     }
 
     cardHandler(id) {
         if(!this.isStart) return;
-        this.view.drawScore(this.roundList.map(round => round.point).filter(p => p != null));
         if(this.checkCorrectAnswer(id)) {
            this.setPoint(true);
            this.view.clickedCard(id);
-           
            this.playWord('/assets/audio/correct.mp3');
            this.round++;
            this.roundStart();
@@ -74,9 +74,11 @@ class PlayModeController extends ModeController {
     }
 
     setPoint(point) {
-        if(this.roundList[this.round -1 ].point === null) {
-            this.roundList[this.round -1].point = point;
-        }
+        this.points.push(point);
+        this.view.drawScore(this.points);
+        // if(this.roundList[this.round -1 ].point === null) {
+        //     this.roundList[this.round -1].point = point;
+        // }
     }
 
     shuffle(activeCards) {
