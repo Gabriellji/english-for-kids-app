@@ -1,285 +1,289 @@
-import eventMixin from "../mixins/eventMixin";
+import eventMixin from '../mixins/eventMixin';
 
 class View {
-  constructor() {
+	constructor() {
+		this.body = document.querySelector('body');
+		this.logo = document.querySelector('.logo');
+		this.menu = document.querySelector('#menu');
+		this.navigation = document.querySelector('.header__navigation');
+		this.hamburger = document.querySelector('.hamburger');
+		this.cardsContainer = document.querySelector('.main-cards-images');
+		this.scoreContainer = document.querySelector('.score');
+		this.card = document.querySelector('.image-link');
+		this.resetStat = document.querySelector('.reset-button');
+		this.statContainer = document.querySelector('.statist');
 
-    this.body = document.querySelector('body');
-    this.menu = document.querySelector('#menu');
-    this.navigation = document.querySelector('.header__navigation');
-    this.hamburger = document.querySelector('.hamburger');
-    this.cardsContainer = document.querySelector('.main-cards-images');
-    this.scoreContainer = document.querySelector('.score');
-    this.card = document.querySelector('.image-link');
-    this.resetStat = document.querySelector('.reset-button');
-    this.statContainer = document.querySelector('.statist');
-    
-    this.statTable = document.querySelector('#tbody');
-  
-    this.switcher = document.querySelector('input');
-    this.overlay =  document.querySelector('.overlay');
 
-    this.hamburger.addEventListener('click', this.clickHamburgerHandler.bind(this));
-    this.navigation.addEventListener('click', this.clickLinksHandler.bind(this));
-    this.switcher.addEventListener('click', this.clickSwitcherHandler.bind(this));
-    this.cardsContainer.addEventListener('click', this.clickCardsHandler.bind(this));
-    this.resetStat.addEventListener('click', this.clickResetHandler.bind(this));
-  }
+		this.statTable = document.querySelector('#tbody');
 
-  clickResetHandler() {
-    this.emit('reset_stat_clicked');
-  }
+		this.switcher = document.querySelector('input');
+		this.overlay = document.querySelector('.overlay');
 
-  clickCardsHandler(e) {
-   const card = e.target.closest('.card');
-    const card_id = card.getAttribute('data-id');
-    this.emit('card_clicked', card_id);
-   
-  }
+		this.hamburger.addEventListener('click', this.clickHamburgerHandler.bind(this));
+		this.navigation.addEventListener('click', this.clickLinksHandler.bind(this));
+		this.switcher.addEventListener('click', this.clickSwitcherHandler.bind(this));
+		this.cardsContainer.addEventListener('click', this.clickCardsHandler.bind(this));
+		this.resetStat.addEventListener('click', this.clickResetHandler.bind(this));
 
-  clickHamburgerHandler()  {
-    if (this.navigation.style.left === "-100%" || this.navigation.style.left === "") {
-        this.openMobileMenu();
-    } else {
-        this.closeMobileMenu();
-    }
-  }
+		this.cardsContainer.onclick = (e) => {
+			this.closeMobileMenu(e);
+		};
 
-  clickLinksHandler (e) {
-    if (e.target.tagName === 'LI') {
-        this.closeMobileMenu();
-        if(e.target.id === 'maine-page__link') {
-          this.emit('main_page_requested');
-          this.cleanScoreContainer();
-        } else if (e.target.id === 'statistic__link'){
-          this.emit('statistic_requested');
-        } else {
-          this.emit('category_requested', e.target.getAttribute('data-id'));
-        }
-    }
-  }
+		this.logo.onclick = (e) => {
+			this.closeMobileMenu(e);
+		};
 
-  leaveCardHandler(e) {
-    e.target.classList.remove('is-flipped');
-  }
+		this.scoreContainer.onclick = (e) => {
+			this.closeMobileMenu(e);
+		};
+	}
 
-  clickSwitcherHandler() {
-    this.emit('toggle_switched');
-  }
+	clickResetHandler() {
+		this.emit('reset_stat_clicked');
+	}
 
-  clickPlayButtonHandler(){
-    this.emit('play_button_pushed');
-    this.repeatViewButton();
-  }
+	clickCardsHandler(e) {
+		const card = e.target.closest('.card');
+		const card_id = card.getAttribute('data-id');
+		this.emit('card_clicked', card_id);
+		this.closeMobileMenu();
+	}
 
-  repeatViewButton() {
-    const button = document.querySelector('.button-start');
-    button.classList.add('repeat');
-  }
+	clickHamburgerHandler() {
+		if (this.navigation.style.left === '-100%' || this.navigation.style.left === '') {
+			this.openMobileMenu();
+		} else {
+			this.closeMobileMenu();
+		}
+	}
 
-  openMobileMenu() {
-    this.overlay.classList.add('hidden-overlay');
-    this.hamburger.classList.add('clicked__hamburger');
-    this.navigation.style.left = "0%";
-  }
+	clickLinksHandler(e) {
+		if (e.target.tagName === 'LI') {
+			this.closeMobileMenu();
+			if (e.target.id === 'maine-page__link') {
+				this.emit('main_page_requested');
+				this.cleanScoreContainer();
+			} else if (e.target.id === 'statistic__link') {
+				this.emit('statistic_requested');
+			} else {
+				this.emit('category_requested', e.target.getAttribute('data-id'));
+			}
+		}
+	}
 
-  closeMobileMenu() {
-    this.hamburger.classList.remove('clicked__hamburger');
-    this.navigation.style.left = "-100%";
-  }
+	leaveCardHandler(e) {
+		e.target.classList.remove('is-flipped');
+	}
 
-  flipCard(id) {
-    const card = this.cardsContainer.querySelector(`[data-id="${id}"]`);
-    card.classList.toggle('is-flipped');
+	clickSwitcherHandler() {
+		this.emit('toggle_switched');
+	}
 
-    setTimeout((() => {
-      card.addEventListener('mouseleave', this.leaveCardHandler.bind(this));
-    }).bind(this), 800);
-  }
+	clickPlayButtonHandler() {
+		this.emit('play_button_pushed');
+		this.repeatViewButton();
+	}
 
-  playModeView() {
-    const card = document.querySelectorAll('.image-link');
-    card.forEach(el => {
-      el.classList.add('play');
-    })
-  }
+	repeatViewButton() {
+		const button = document.querySelector('.button-start');
+		button.classList.add('repeat');
+	}
 
-  showStatistic() {
-    this.statContainer.style.visibility = 'unset';
-  }
-  hideStatistic() {
-    this.statContainer.style.visibility = 'hidden';
-  }
+	openMobileMenu() {
+		this.overlay.classList.add('hidden-overlay');
+		this.hamburger.classList.add('clicked__hamburger');
+		this.navigation.style.left = '0%';
+	}
 
-  clickedCard(id){
-    const card = this.cardsContainer.querySelector(`[data-id="${id}"]`);
-    card.classList.add('clicked-card');
-  }
+	closeMobileMenu() {
+		this.hamburger.classList.remove('clicked__hamburger');
+		this.navigation.style.left = '-100%';
+	}
 
-  cleanPage() {
-    this.cardsContainer.innerHTML = '';
-  }
+	flipCard(id) {
+		const card = this.cardsContainer.querySelector(`[data-id="${id}"]`);
+		card.classList.toggle('is-flipped');
 
-  cleanScoreContainer() {
-    this.scoreContainer.innerHTML = '';
-  }
+		setTimeout((() => {
+			card.addEventListener('mouseleave', this.leaveCardHandler.bind(this));
+		}), 800);
+	}
 
-  drawScore(roundArray){
-    this.scoreContainer.innerHTML = '';
-    roundArray.forEach(round => {
-      const star = document.createElement('img');
-      if(round) {
-        star.setAttribute('src','/assets/img/star-win.svg');
-      } else {
-        star.setAttribute('src','/assets/img/star.svg')
-      }
-      this.scoreContainer.appendChild(star);
-    });
-  }
+	playModeView() {
+		const card = document.querySelectorAll('.image-link');
+		card.forEach((el) => {
+			el.classList.add('play');
+		});
+	}
 
-  drawCard (id, word, img, translation, isArrow) {
-    const container = document.createElement('div');
-    container.classList.add('scene');
+	showStatistic() {
+		this.statContainer.style.display = 'flex';
+	}
 
-    const innerContainer = document.createElement('div');
-    innerContainer.classList.add('card');
-    innerContainer.setAttribute('data-id', id);
+	hideStatistic() {
+		this.statContainer.style.display = 'none';
+	}
 
-    container.appendChild(innerContainer);
+	clickedCard(id) {
+		const card = this.cardsContainer.querySelector(`[data-id="${id}"]`);
+		card.classList.add('clicked-card');
+	}
 
-    const card = document.createElement('div');
-    card.classList.add('card__face', 'card__face--front', 'image-link');
+	cleanPage() {
+		this.cardsContainer.innerHTML = '';
+	}
 
-    const cardFacaBack = document.createElement('div');
-    cardFacaBack.classList.add('card__face', 'card__face--back', 'image-link');
+	cleanScoreContainer() {
+		this.scoreContainer.innerHTML = '';
+	}
 
-    const image = document.createElement('img');
-    image.setAttribute('src', img);
-    image.setAttribute('alt', word);
+	drawScore(roundArray) {
+		this.scoreContainer.innerHTML = '';
+		roundArray.forEach((round) => {
+			const star = document.createElement('img');
+			if (round) {
+				star.setAttribute('src', '/assets/img/star-win.svg');
+			} else {
+				star.setAttribute('src', '/assets/img/star.svg');
+			}
+			this.scoreContainer.appendChild(star);
+		});
+	}
 
-    const imageBack = document.createElement('img');
-    imageBack.setAttribute('src', img);
-    imageBack.setAttribute('alt', word);
+	drawCard(id, word, img, translation, isArrow) {
+		const container = document.createElement('div');
+		container.classList.add('scene');
 
-    const title = document.createElement('span');
-    title.textContent = word;
+		const innerContainer = document.createElement('div');
+		innerContainer.classList.add('card');
+		innerContainer.setAttribute('data-id', id);
 
- 
-      const arr = document.createElement('img');
-    arr.classList.add('arrow');
-    arr.setAttribute('src', '../assets/img/rotate.svg');
-   
-    
+		container.appendChild(innerContainer);
 
-    const titleBack = document.createElement('span');
-    titleBack.textContent = translation;
+		const card = document.createElement('div');
+		card.classList.add('card__face', 'card__face--front', 'image-link');
 
-    card.appendChild(image);
-    card.appendChild(title);
-    if(isArrow) {
-      card.appendChild(arr);
-    }
-   
+		const cardFacaBack = document.createElement('div');
+		cardFacaBack.classList.add('card__face', 'card__face--back', 'image-link');
 
-    cardFacaBack.appendChild(imageBack);
-    cardFacaBack.appendChild(titleBack);
+		const image = document.createElement('img');
+		image.setAttribute('src', img);
+		image.setAttribute('alt', word);
 
-    innerContainer.appendChild(card);
-    innerContainer.appendChild(cardFacaBack);
+		const imageBack = document.createElement('img');
+		imageBack.setAttribute('src', img);
+		imageBack.setAttribute('alt', word);
 
-    this.cardsContainer.appendChild(container);
+		const title = document.createElement('span');
+		title.textContent = word;
 
-  
-    
-  }
+		const arr = document.createElement('img');
+		arr.classList.add('arrow');
+		arr.setAttribute('src', '../assets/img/rotate.svg');
 
-  drawCards(arrayCards, isArrow = false) {
-    arrayCards.forEach(({id, word, translation, img}) => {
-      this.drawCard(id, word, img, translation, isArrow);
-    });
-  }
+		const titleBack = document.createElement('span');
+		titleBack.textContent = translation;
+		card.appendChild(image);
+		card.appendChild(title);
 
-  drowMenuItem(text, id) {
-    const listLink = document.createElement('li');
-    listLink.setAttribute('data-id', id);
-    listLink.textContent = text;
+		if (isArrow) {
+			card.appendChild(arr);
+		}
 
-    this.menu.appendChild(listLink);
-  }
+		cardFacaBack.appendChild(imageBack);
+		cardFacaBack.appendChild(titleBack);
+		innerContainer.appendChild(card);
+		innerContainer.appendChild(cardFacaBack);
+		this.cardsContainer.appendChild(container);
+	}
 
-  drawStatistic(arr) {
-    this.statTable.innerHTML = '';
-    arr.forEach(word => {
-      const tr = document.createElement('tr');
-      const text = document.createElement('td');
-      const translate = document.createElement('td');
-      const trainClicks = document.createElement('td');
-      const correct = document.createElement('td');
-      const error = document.createElement('td');
-      const percent = document.createElement('td');
+	drawCards(arrayCards, isArrow = false) {
+		arrayCards.forEach(({
+			id, word, translation, img,
+		}) => {
+			this.drawCard(id, word, img, translation, isArrow);
+		});
+	}
 
-      text.innerText = word.word;
-      translate.innerText = word.translation;
-      trainClicks.innerText = word.trainClicks;
-      correct.innerText = word.correctAnswer;
-      error.innerText = word.errorAnswer;
-      percent.innerText = ((word.errorAnswer / ( word.correctAnswer + word.errorAnswer)) * 100) || 0 ;
+	drowMenuItem(text, id) {
+		const listLink = document.createElement('li');
+		listLink.setAttribute('data-id', id);
+		listLink.textContent = text;
 
-      tr.appendChild(text);
-      tr.appendChild(translate);
-      tr.appendChild(trainClicks);
-      tr.appendChild(correct);
-      tr.appendChild(error);
-      tr.appendChild(percent);
+		this.menu.appendChild(listLink);
+	}
 
-      this.statTable.appendChild(tr);
+	drawStatistic(arr) {
+		this.statTable.innerHTML = '';
+		arr.forEach((word) => {
+			const tr = document.createElement('tr');
+			const text = document.createElement('td');
+			const translate = document.createElement('td');
+			const trainClicks = document.createElement('td');
+			const correct = document.createElement('td');
+			const error = document.createElement('td');
+			const percent = document.createElement('td');
 
-    })
-  }
+			text.innerText = word.word;
+			translate.innerText = word.translation;
+			trainClicks.innerText = word.trainClicks;
+			correct.innerText = word.correctAnswer;
+			error.innerText = word.errorAnswer;
+			percent.innerText = ((word.errorAnswer / (word.correctAnswer + word.errorAnswer)) * 100) || 0;
 
-  drowMenu(arrayMenu) {
-    arrayMenu.items.forEach((link) => {
-      this.drowMenuItem(link.word, link.id);
-    });
-  }
+			tr.appendChild(text);
+			tr.appendChild(translate);
+			tr.appendChild(trainClicks);
+			tr.appendChild(correct);
+			tr.appendChild(error);
+			tr.appendChild(percent);
 
-  drawButton() {
-    const buttonContainer = document.createElement('div');
-    buttonContainer.classList.add('button-box');
-    const button = document.createElement('button');
-    button.classList.add('button-start');
-    button.innerText = 'Start Game';
-    buttonContainer.appendChild(button);
-    this.cardsContainer.appendChild(buttonContainer);
-    button.addEventListener('click', this.clickPlayButtonHandler.bind(this));
-  }
+			this.statTable.appendChild(tr);
+		});
+	}
 
-  changeBackgroundColor(mode) {
-    let imageColor = document.querySelectorAll(".image-link");
-    if(mode === 'play') {
-      this.navigation.style.background = 'linear-gradient(to bottom left, #00cc00 0%, #ffcc00 100%)';
-      imageColor.forEach(b => b.style.background = 'linear-gradient(to bottom left, #00cc00 0%, #ffcc00 100%)');
-    } else if (mode === 'train'){
-      this.navigation.style.background = 'linear-gradient(to top right, #ffcc00 0%, #ff00ff 100%)';
-      imageColor.forEach(b => b.style.background = 'linear-gradient(to top right, #ffcc00 0%, #ff00ff 100%)');
-    }
-  }
+	drowMenu(arrayMenu) {
+		arrayMenu.items.forEach((link) => {
+			this.drowMenuItem(link.word, link.id);
+		});
+	}
 
-  showWinResult(){
-    const image = document.querySelector('.finish-round-succes');
-    image.style.visibility = 'unset';
-  }
+	drawButton() {
+		const buttonContainer = document.createElement('div');
+		buttonContainer.classList.add('button-box');
+		const button = document.createElement('button');
+		button.classList.add('button-start');
+		button.innerText = 'Start Game';
+		buttonContainer.appendChild(button);
+		this.cardsContainer.appendChild(buttonContainer);
+		button.addEventListener('click', this.clickPlayButtonHandler.bind(this));
+	}
 
-  showFailResult(){
-    const image = document.querySelector('.finish-round-failure');
-    image.style.visibility = 'unset';
-  }
+	changeBackgroundColor(mode) {
+		const imageColor = document.querySelectorAll('.image-link');
+		if (mode === 'play') {
+			this.navigation.style.background = 'linear-gradient(to bottom left, #00cc00 0%, #ffcc00 100%)';
+			imageColor.forEach((b) => b.style.background = 'linear-gradient(to bottom left, #00cc00 0%, #ffcc00 100%)');
+		} else if (mode === 'train') {
+			this.navigation.style.background = 'linear-gradient(to top right, #ffcc00 0%, #ff00ff 100%)';
+			imageColor.forEach((b) => b.style.background = 'linear-gradient(to top right, #ffcc00 0%, #ff00ff 100%)');
+		}
+	}
 
-  hideResult(){
-    const image = document.querySelectorAll('.image');
-    image.forEach(img => img.style.visibility = 'hidden');
-    
-  }
+	showWinResult() {
+		const image = document.querySelector('.finish-round-succes');
+		image.style.visibility = 'unset';
+	}
 
+	showFailResult() {
+		const image = document.querySelector('.finish-round-failure');
+		image.style.visibility = 'unset';
+	}
+
+	hideResult() {
+		const image = document.querySelectorAll('.image');
+		image.forEach((img) => img.style.visibility = 'hidden');
+	}
 }
 
 Object.assign(View.prototype, eventMixin);

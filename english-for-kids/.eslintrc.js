@@ -12,8 +12,11 @@ module.exports = {
   },
   parserOptions: {
     ecmaVersion: 2018,
-    sourceType: 'module',
   },
   rules: {
-  },
+    "linebreak-style": 0,
+    "indent": ["error", "tab"],
+    "no-tabs": 0,
+    "no-underscore-dangle": 'off'
+  }
 };
