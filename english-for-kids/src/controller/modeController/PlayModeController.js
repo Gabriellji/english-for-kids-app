@@ -45,12 +45,13 @@ class PlayModeController extends ModeController {
 
 	gameOver() {
 		const score = this.points.reduce((acc, point) => (point ? acc * 1 : acc * 0), 1);
+		const errors = this.points.reduce((acc, point) => (!point ? acc + 1 : acc), 0);
 		this.view.off('play_button_pushed');
 		if (score > 0) {
 			this.view.showWinResult();
 			this.playWord('/assets/audio/success.mp3');
 		} else {
-			this.view.showFailResult();
+			this.view.showFailResult(errors);
 			this.playWord('/assets/audio/failure.mp3');
 		}
 		this.view.cleanScoreContainer();

@@ -275,7 +275,9 @@ class View {
 		image.style.visibility = 'unset';
 	}
 
-	showFailResult() {
+	showFailResult(error) {
+		const errorText = document.querySelector('.error');
+		errorText.innerText = error;
 		const image = document.querySelector('.finish-round-failure');
 		image.style.visibility = 'unset';
 	}

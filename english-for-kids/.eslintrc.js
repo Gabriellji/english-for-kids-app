@@ -18,5 +18,6 @@ module.exports = {
     "indent": ["error", "tab"],
     "no-tabs": 0,
     "no-underscore-dangle": 'off'
+
   }
 };

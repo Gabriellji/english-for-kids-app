@@ -125,6 +125,7 @@ flex-direction: column;
 .logo {
 display: flex;
 justify-content: center;
+max-height: 120px;
 }
 
 .logo-kids {
@@ -419,6 +420,8 @@ background-color: white;
 display: flex;
 flex-direction: column;
 align-items: center;
+font-size: 55px;
+font-weight: 700;
 }
 
 .score {
