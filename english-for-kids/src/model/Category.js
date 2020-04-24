@@ -1,4 +1,5 @@
-import Card from './Card.js';
+/* eslint-disable class-methods-use-this */
+import Card from './Card';
 
 class Category {
 	constructor(id, title, img, words) {

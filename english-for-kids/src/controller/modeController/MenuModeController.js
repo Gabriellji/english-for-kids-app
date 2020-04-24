@@ -13,6 +13,7 @@ class MenuModeController extends ModeController {
 
 	cardHandler(id) {
 		this.emit('category_requested', id);
+		this.view.activeLinkView(id);
 	}
 }
 

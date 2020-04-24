@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-syntax */
 import data from '../data';
 
 class Statistic {
@@ -8,6 +9,7 @@ class Statistic {
 
 	getWords(id = 'all') {
 		if (id === 'all') {
+			// eslint-disable-next-line max-len
 			return this.words.reduce((acc, category) => acc.concat(category.words).sort((a, b) => a.word.charCodeAt(0) - b.word.charCodeAt(0)), []);
 		}
 		return (this.words.filter((category) => category.id === Number(id)))[0].words;

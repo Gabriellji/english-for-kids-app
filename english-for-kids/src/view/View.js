@@ -1,4 +1,9 @@
+/* eslint-disable no-return-assign */
+/* eslint-disable no-param-reassign */
+/* eslint-disable class-methods-use-this */
+/* eslint-disable camelcase */
 import eventMixin from '../mixins/eventMixin';
+
 
 class View {
 	constructor() {
@@ -12,6 +17,7 @@ class View {
 		this.card = document.querySelector('.image-link');
 		this.resetStat = document.querySelector('.reset-button');
 		this.statContainer = document.querySelector('.statist');
+		this.link = document.querySelector('li');
 
 
 		this.statTable = document.querySelector('#tbody');
@@ -36,6 +42,10 @@ class View {
 		this.scoreContainer.onclick = (e) => {
 			this.closeMobileMenu(e);
 		};
+
+		this.statContainer.onclick = (e) => {
+			this.closeMobileMenu(e);
+		};
 	}
 
 	clickResetHandler() {
@@ -50,7 +60,7 @@ class View {
 	}
 
 	clickHamburgerHandler() {
-		if (this.navigation.style.left === '-100%' || this.navigation.style.left === '') {
+		if (this.navigation.style.left === '-108%' || this.navigation.style.left === '') {
 			this.openMobileMenu();
 		} else {
 			this.closeMobileMenu();
@@ -58,17 +68,38 @@ class View {
 	}
 
 	clickLinksHandler(e) {
+		this.cleanScoreContainer();
 		if (e.target.tagName === 'LI') {
 			this.closeMobileMenu();
 			if (e.target.id === 'maine-page__link') {
 				this.emit('main_page_requested');
-				this.cleanScoreContainer();
+				this.activeLinkMainStatisticView('#maine-page__link');
 			} else if (e.target.id === 'statistic__link') {
 				this.emit('statistic_requested');
+				this.activeLinkMainStatisticView('#statistic__link');
 			} else {
 				this.emit('category_requested', e.target.getAttribute('data-id'));
+				this.activeLinkView(e.target.getAttribute('data-id'));
 			}
 		}
+	}
+
+	activeLinkMainStatisticView(id) {
+		const mainLinks = document.querySelector(id);
+		const links = this.menu.querySelectorAll('li');
+		links.forEach((e) => {
+			e.classList.remove('active-link');
+		});
+		mainLinks.classList.add('active-link');
+	}
+
+	activeLinkView(id) {
+		const links = this.menu.querySelectorAll('li');
+		links.forEach((e) => {
+			e.classList.remove('active-link');
+		});
+		const el = this.menu.querySelector(`li[data-id="${id}"]`);
+		el.classList.add('active-link');
 	}
 
 	leaveCardHandler(e) {
@@ -97,7 +128,7 @@ class View {
 
 	closeMobileMenu() {
 		this.hamburger.classList.remove('clicked__hamburger');
-		this.navigation.style.left = '-100%';
+		this.navigation.style.left = '-108%';
 	}
 
 	flipCard(id) {

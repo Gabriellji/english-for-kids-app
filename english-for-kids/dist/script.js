@@ -143,6 +143,8 @@ var Controller = /*#__PURE__*/function () {
 
       if (this.modeController) {
         this.view.off('card_clicked', this.modeController.cardHandler.bind(this.modeController));
+        this.modeController.destruct();
+        this.view.cleanScoreContainer();
       }
 
       if (isMenu) {
@@ -255,6 +257,7 @@ var MenuModeController = /*#__PURE__*/function (_ModeController) {
     key: "cardHandler",
     value: function cardHandler(id) {
       this.emit('category_requested', id);
+      this.view.activeLinkView(id);
     }
   }]);
 
@@ -281,6 +284,7 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
+/* eslint-disable class-methods-use-this */
 
 
 var ModeController = /*#__PURE__*/function () {
@@ -304,6 +308,11 @@ var ModeController = /*#__PURE__*/function () {
       audio.preload = 'auto';
       audio.src = src;
       audio.play();
+    }
+  }, {
+    key: "destruct",
+    value: function destruct() {
+      return true;
     }
   }]);
 
@@ -347,6 +356,7 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
+/* eslint-disable class-methods-use-this */
 
 
 var PlayModeController = /*#__PURE__*/function (_ModeController) {
@@ -382,6 +392,11 @@ var PlayModeController = /*#__PURE__*/function (_ModeController) {
       this.shuffle(this.roundList);
     }
   }, {
+    key: "destruct",
+    value: function destruct() {
+      this.view.off('play_button_pushed');
+    }
+  }, {
     key: "roundStart",
     value: function roundStart() {
       this.isStart = true;
@@ -402,7 +417,7 @@ var PlayModeController = /*#__PURE__*/function (_ModeController) {
         this.model.statistic.setStatistic(id, 'correctAnswer');
         this.view.clickedCard(id);
         this.playWord('/assets/audio/correct.mp3');
-        this.round++;
+        this.round += 1;
         this.roundStart();
       } else {
         this.setPoint(false);
@@ -418,13 +433,16 @@ var PlayModeController = /*#__PURE__*/function (_ModeController) {
       var score = this.points.reduce(function (acc, point) {
         return point ? acc * 1 : acc * 0;
       }, 1);
+      var errors = this.points.reduce(function (acc, point) {
+        return !point ? acc + 1 : acc;
+      }, 0);
       this.view.off('play_button_pushed');
 
       if (score > 0) {
         this.view.showWinResult();
         this.playWord('/assets/audio/success.mp3');
       } else {
-        this.view.showFailResult();
+        this.view.showFailResult(errors);
         this.playWord('/assets/audio/failure.mp3');
       }
 
@@ -1071,13 +1089,14 @@ var Card = function Card(id, word, translation, img, audioSrc) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Card_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Card.js */ "./src/model/Card.js");
+/* harmony import */ var _Card__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Card */ "./src/model/Card.js");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
+/* eslint-disable class-methods-use-this */
 
 
 var Category = /*#__PURE__*/function () {
@@ -1100,7 +1119,7 @@ var Category = /*#__PURE__*/function () {
             translation = _ref.translation,
             img = _ref.img,
             audioSrc = _ref.audioSrc;
-        cards.push(new _Card_js__WEBPACK_IMPORTED_MODULE_0__["default"](id, word, translation, img, audioSrc));
+        cards.push(new _Card__WEBPACK_IMPORTED_MODULE_0__["default"](id, word, translation, img, audioSrc));
       });
       return cards;
     }
@@ -1122,13 +1141,14 @@ var Category = /*#__PURE__*/function () {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Card_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Card.js */ "./src/model/Card.js");
+/* harmony import */ var _Card__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Card */ "./src/model/Card.js");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
+/* eslint-disable class-methods-use-this */
 
 
 var Menu = /*#__PURE__*/function () {
@@ -1146,7 +1166,7 @@ var Menu = /*#__PURE__*/function () {
         var id = _ref.id,
             title = _ref.title,
             img = _ref.img;
-        items.push(new _Card_js__WEBPACK_IMPORTED_MODULE_0__["default"](id, title, null, img));
+        items.push(new _Card__WEBPACK_IMPORTED_MODULE_0__["default"](id, title, null, img));
       });
       return items;
     }
@@ -1269,6 +1289,7 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
+/* eslint-disable no-restricted-syntax */
 
 
 var Statistic = /*#__PURE__*/function () {
@@ -1285,6 +1306,7 @@ var Statistic = /*#__PURE__*/function () {
       var id = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'all';
 
       if (id === 'all') {
+        // eslint-disable-next-line max-len
         return this.words.reduce(function (acc, category) {
           return acc.concat(category.words).sort(function (a, b) {
             return a.word.charCodeAt(0) - b.word.charCodeAt(0);
@@ -1401,6 +1423,13 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
+/* eslint-disable no-return-assign */
+
+/* eslint-disable no-param-reassign */
+
+/* eslint-disable class-methods-use-this */
+
+/* eslint-disable camelcase */
 
 
 var View = /*#__PURE__*/function () {
@@ -1419,6 +1448,7 @@ var View = /*#__PURE__*/function () {
     this.card = document.querySelector('.image-link');
     this.resetStat = document.querySelector('.reset-button');
     this.statContainer = document.querySelector('.statist');
+    this.link = document.querySelector('li');
     this.statTable = document.querySelector('#tbody');
     this.switcher = document.querySelector('input');
     this.overlay = document.querySelector('.overlay');
@@ -1439,6 +1469,10 @@ var View = /*#__PURE__*/function () {
     this.scoreContainer.onclick = function (e) {
       _this.closeMobileMenu(e);
     };
+
+    this.statContainer.onclick = function (e) {
+      _this.closeMobileMenu(e);
+    };
   }
 
   _createClass(View, [{
@@ -1457,7 +1491,7 @@ var View = /*#__PURE__*/function () {
   }, {
     key: "clickHamburgerHandler",
     value: function clickHamburgerHandler() {
-      if (this.navigation.style.left === '-100%' || this.navigation.style.left === '') {
+      if (this.navigation.style.left === '-108%' || this.navigation.style.left === '') {
         this.openMobileMenu();
       } else {
         this.closeMobileMenu();
@@ -1466,18 +1500,42 @@ var View = /*#__PURE__*/function () {
   }, {
     key: "clickLinksHandler",
     value: function clickLinksHandler(e) {
+      this.cleanScoreContainer();
+
       if (e.target.tagName === 'LI') {
         this.closeMobileMenu();
 
         if (e.target.id === 'maine-page__link') {
           this.emit('main_page_requested');
-          this.cleanScoreContainer();
+          this.activeLinkMainStatisticView('#maine-page__link');
         } else if (e.target.id === 'statistic__link') {
           this.emit('statistic_requested');
+          this.activeLinkMainStatisticView('#statistic__link');
         } else {
           this.emit('category_requested', e.target.getAttribute('data-id'));
+          this.activeLinkView(e.target.getAttribute('data-id'));
         }
       }
+    }
+  }, {
+    key: "activeLinkMainStatisticView",
+    value: function activeLinkMainStatisticView(id) {
+      var mainLinks = document.querySelector(id);
+      var links = this.menu.querySelectorAll('li');
+      links.forEach(function (e) {
+        e.classList.remove('active-link');
+      });
+      mainLinks.classList.add('active-link');
+    }
+  }, {
+    key: "activeLinkView",
+    value: function activeLinkView(id) {
+      var links = this.menu.querySelectorAll('li');
+      links.forEach(function (e) {
+        e.classList.remove('active-link');
+      });
+      var el = this.menu.querySelector("li[data-id=\"".concat(id, "\"]"));
+      el.classList.add('active-link');
     }
   }, {
     key: "leaveCardHandler",
@@ -1512,7 +1570,7 @@ var View = /*#__PURE__*/function () {
     key: "closeMobileMenu",
     value: function closeMobileMenu() {
       this.hamburger.classList.remove('clicked__hamburger');
-      this.navigation.style.left = '-100%';
+      this.navigation.style.left = '-108%';
     }
   }, {
     key: "flipCard",
@@ -1715,7 +1773,9 @@ var View = /*#__PURE__*/function () {
     }
   }, {
     key: "showFailResult",
-    value: function showFailResult() {
+    value: function showFailResult(error) {
+      var errorText = document.querySelector('.error');
+      errorText.innerText = error;
       var image = document.querySelector('.finish-round-failure');
       image.style.visibility = 'unset';
     }

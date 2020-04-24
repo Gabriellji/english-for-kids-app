@@ -90,7 +90,7 @@ padding: 0;
 flex-direction: column;
 padding: 100px 0;
 top: 0;
-left: -100%;
+left: -108%;
 width: 330px;
 height: calc(100vh + 20px);
 background: linear-gradient(to top right, #ffcc00 0%, #ff00ff 100%);
@@ -104,6 +104,10 @@ letter-spacing:0;
 line-height: 46px;
 color: ivory;
 cursor:pointer;
+}
+
+.header__navigation .active-link {
+    color: yellow; 
 }
 
 
@@ -244,6 +248,7 @@ flex-direction: unset;
 
 .wrapper .main-cards-images .scene .clicked-card {
 filter: contrast(0.5);
+pointer-events: none;
 }
 
 .main-cards-images .image-link:hover {

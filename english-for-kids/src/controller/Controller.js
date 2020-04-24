@@ -26,6 +26,8 @@ class Controller {
 		this.view.hideStatistic();
 		if (this.modeController) {
 			this.view.off('card_clicked', this.modeController.cardHandler.bind(this.modeController));
+			this.modeController.destruct();
+			this.view.cleanScoreContainer();
 		}
 		if (isMenu) {
 			this.model.isMenuMode = true;

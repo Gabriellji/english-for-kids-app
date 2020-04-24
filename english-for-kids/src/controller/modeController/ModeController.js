@@ -1,3 +1,4 @@
+/* eslint-disable class-methods-use-this */
 import eventMixin from '../../mixins/eventMixin';
 
 class ModeController {
@@ -16,6 +17,10 @@ class ModeController {
 		audio.preload = 'auto';
 		audio.src = src;
 		audio.play();
+	}
+
+	destruct() {
+		return true;
 	}
 }
 

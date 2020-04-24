@@ -1,3 +1,4 @@
+/* eslint-disable class-methods-use-this */
 import ModeController from './ModeController';
 
 class PlayModeController extends ModeController {
@@ -18,6 +19,10 @@ class PlayModeController extends ModeController {
 		this.shuffle(this.roundList);
 	}
 
+	destruct() {
+		this.view.off('play_button_pushed');
+	}
+
 	roundStart() {
 		this.isStart = true;
 		if (this.round > this.roundList.length) {
@@ -34,7 +39,7 @@ class PlayModeController extends ModeController {
 			this.model.statistic.setStatistic(id, 'correctAnswer');
 			this.view.clickedCard(id);
 			this.playWord('/assets/audio/correct.mp3');
-			this.round++;
+			this.round += 1;
 			this.roundStart();
 		} else {
 			this.setPoint(false);
