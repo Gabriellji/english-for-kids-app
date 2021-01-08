@@ -99,7 +99,7 @@ transition: all .5s ease-in-out;
 
 .header__navigation li {
 display:inline-block;
-font-size: 1rem;
+font-size: 1.1rem;
 letter-spacing:0;
 line-height: 46px;
 color: ivory;
