@@ -1,6 +1,6 @@
 ![Javascript](https://aleen42.github.io/badges/src/javascript.svg)
 # English for kids 
-an app for kids to learn english words
+an app for kids to learn english words with only used HTML, CSS, and Vanilla JavaScript.
 
 ### Description of the task ([RSSchool](https://rs.school))
 https://github.com/rolling-scopes-school/tasks/blob/master/tasks/rslang/english-for-kids.md
@@ -10,7 +10,7 @@ https://github.com/rolling-scopes-school/tasks/blob/master/tasks/rslang/english-
 - Category page
 - Statistics page
 
-![demo](https://imgur.com/kDh5gSc)
+![demo](https://i.imgur.com/kDh5gSc.png)
 
 ### Demo
 
