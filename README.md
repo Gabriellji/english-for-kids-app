@@ -1,6 +1,7 @@
 ![Javascript](https://aleen42.github.io/badges/src/javascript.svg)
+![Webpack](https://aleen42.github.io/badges/src/webpack.svg)
 # English for kids 
-an app for kids to learn english words with only used HTML, CSS, and Vanilla JavaScript.
+an simple app for kids to learn english words with only used HTML, CSS, and Vanilla JavaScript.
 
 ### Description of the task ([RSSchool](https://rs.school))
 https://github.com/rolling-scopes-school/tasks/blob/master/tasks/rslang/english-for-kids.md
